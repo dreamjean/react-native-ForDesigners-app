@@ -16,12 +16,12 @@ const fonts = {
 export default {
   colors,
   size: {
-    s: 10,
-    m: 12,
-    l: 14,
-    l2: 16,
+    s1: 12,
+    s2: 15,
+    m: 16,
+    l: 17,
     xl: 18,
-    title1: 22,
+    title1: 20,
     title2: 30,
     heading: 50,
   },

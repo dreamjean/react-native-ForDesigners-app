@@ -1,12 +1,8 @@
 export default {
-  // base colors
-  primary: '#5390ff', // Blue
-  secondary: '#cacfd9', // Gray
-
-  // colors
-  black: '#1E1F20',
-  white: '#FFFFFF',
-  lightGray: '#eff2f5',
-  gray: '#8b9097',
-  blue: '#1e90ff',
+  blue: '#4775f2',
+  darkBlue: '#212C4F',
+  darkGrey: '#3c4560',
+  grey: '#b8bece',
+  lightGrey: '#f0f3f5',
+  white: '#ffffff',
 };

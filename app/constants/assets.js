@@ -29,8 +29,6 @@ export const assets = [
   require('../assets/logo-vue.png'),
   require('../assets/logo-xcode.png'),
   require('../assets/logo-xd.png'),
-
-
 ];
 
 export const fonts = {
