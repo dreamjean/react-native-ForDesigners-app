@@ -3,12 +3,12 @@
     "name": "DesignCode",
     "slug": "DesignCode",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./app/assets/icon.png",
     "splash": {
       "image": "./app/assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#f0f3f5"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

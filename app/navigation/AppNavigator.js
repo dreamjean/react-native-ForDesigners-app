@@ -1,4 +1,4 @@
-import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import { AntDesign, FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 
@@ -11,14 +11,21 @@ const { getFont, size } = theme;
 
 const screenOptions = ({ route }) => ({
   headerShown: false,
-  tabBarIcon: ({ size, color }) => {
+  tabBarIcon: ({ focused, size, color }) => {
     let iconName;
     let Icon = FontAwesome5;
-    if (route.name === 'Home') iconName = 'home';
-    if (route.name === 'Courses') iconName = 'jedi';
+    if (route.name === 'Home') {
+      Icon = focused ? FontAwesome5 : AntDesign;
+      iconName = 'home';
+    }
+    if (route.name === 'Courses') {
+      Icon = focused ? FontAwesome5 : Ionicons;
+      iconName = focused ? 'jedi' : 'ios-albums';
+    }
+
     if (route.name === 'Project') {
       Icon = FontAwesome;
-      iconName = 'folder';
+      iconName = focused ? 'folder-open' : 'folder-o';
     }
     return <Icon name={iconName} color={color} size={size} />;
   },

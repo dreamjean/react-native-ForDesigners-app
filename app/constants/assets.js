@@ -1,4 +1,4 @@
-export const assets = [
+export const images = [
   require('../assets/avatar-default.jpg'),
   // background 1~16
   require('../assets/background1.jpg'),
@@ -14,21 +14,23 @@ export const assets = [
   require('../assets/background11.jpg'),
   require('../assets/background12.jpg'),
   require('../assets/background13.jpg'),
+  require('../assets/background14.jpg'),
   require('../assets/background15.jpg'),
   require('../assets/background16.jpg'),
   // avatar 17
   require('../assets/avatar.jpeg'),
   //logo 18~27
-  require('../assets/logo-dc.png'),
-  require('../assets/logo-figma.png'),
   require('../assets/logo-framerx.png'),
-  require('../assets/logo-invision.png'),
-  require('../assets/logo-react.png'),
-  require('../assets/logo-sketch.png'),
+  require('../assets/logo-figma.png'),
   require('../assets/logo-studio.png'),
+  require('../assets/logo-react.png'),
+  require('../assets/logo-swift.png'),
+  require('../assets/logo-sketch.png'),
   require('../assets/logo-vue.png'),
+  require('../assets/logo-invision.png'),
   require('../assets/logo-xcode.png'),
   require('../assets/logo-xd.png'),
+  require('../assets/logo-dc.png'),
 ];
 
 export const fonts = {

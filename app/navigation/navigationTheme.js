@@ -7,6 +7,5 @@ export default {
   colors: {
     ...DefaultTheme.colors,
     primary: colors.blue,
-    secondary: colors.grey,
   },
 };
