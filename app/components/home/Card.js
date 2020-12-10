@@ -28,7 +28,7 @@ const Container = styled.View`
     backgroundColor: colors.white,
     borderRadius: radii.m1,
     marginRight: space.m2,
-    marginTop: space.m2,
+    marginVertical: space.m2,
   })}
 `;
 
