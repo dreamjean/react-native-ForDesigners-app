@@ -2,27 +2,27 @@ import { images } from '../constants';
 
 export default [
   {
-    image: images[17],
+    image: images[18],
     text: 'Framer X',
   },
   {
-    image: images[18],
+    image: images[19],
     text: 'Figma',
   },
   {
-    image: images[19],
+    image: images[20],
     text: 'Studio',
   },
   {
-    image: images[20],
+    image: images[21],
     text: 'React',
   },
   {
-    image: images[21],
+    image: images[22],
     text: 'Swift',
   },
   {
-    image: images[22],
+    image: images[23],
     text: 'Sketch',
   },
 ];

@@ -3,9 +3,8 @@ import styled from 'styled-components';
 
 import Image from '../styles/Image';
 import Text from '../styles/Text';
-import LogoCard from './LogoCard';
 
-const Card = ({ image, heading, ...rest }) => {
+const Card = ({ image, heading, logo, title, caption }) => {
   return (
     <Container>
       <Cover>
@@ -13,7 +12,13 @@ const Card = ({ image, heading, ...rest }) => {
         <Heading title2>{heading}</Heading>
       </Cover>
       <Info>
-        <LogoCard {...rest} />
+        <Image logo2 source={logo} resizeMode="contain" />
+        <InfoBox>
+          <Text title1 dark>
+            {title}
+          </Text>
+          <Text body2>{caption}</Text>
+        </InfoBox>
       </Info>
     </Container>
   );
@@ -27,8 +32,8 @@ const Container = styled.View`
   ${({ theme: { colors, radii, space } }) => ({
     backgroundColor: colors.white,
     borderRadius: radii.m1,
-    marginRight: space.m2,
-    marginVertical: space.m2,
+    marginRight: space.m3,
+    marginBottom: space.m2,
   })}
 `;
 
@@ -52,10 +57,17 @@ const Heading = styled(Text)`
 
 const Info = styled.View`
   flex: 1;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
 
   ${({ theme: { space } }) => ({
     paddingLeft: space.m2,
+  })}
+`;
+
+const InfoBox = styled.View`
+  ${({ theme: { space } }) => ({
+    marginLeft: space.s3,
   })}
 `;
 

@@ -4,20 +4,11 @@ import styled from 'styled-components';
 import Image from '../styles/Image';
 import Text from '../styles/Text';
 
-const LogoCard = ({ logo, title, subTitle }) => {
+const LogoCard = ({ logo, title }) => {
   return (
     <Container>
-      <ImageBox>
-        <Image source={logo} resizeMode="contain" />
-      </ImageBox>
-      <Wrapper>
-        <Title {...{ subTitle }}>{title}</Title>
-        {subTitle && (
-          <Text body1 upper>
-            {subTitle}
-          </Text>
-        )}
-      </Wrapper>
+      <Image logo1 source={logo} resizeMode="contain" />
+      <Title body2>{title}</Title>
     </Container>
   );
 };
@@ -25,27 +16,21 @@ const LogoCard = ({ logo, title, subTitle }) => {
 const Container = styled.View`
   flex-direction: row;
   align-items: center;
-`;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 
-const ImageBox = styled.View`
-  ${({ subTitle }) => ({
-    height: subTitle ? 44 : 36,
-    width: subTitle ? 44 : 36,
-  })}
-`;
-
-const Wrapper = styled.View`
-  ${({ theme: { space } }) => ({
-    marginLeft: space.s2,
+  ${({ theme: { colors, radii, space } }) => ({
+    backgroundColor: colors.white,
+    borderRadius: radii.s2,
+    paddingVertical: space.m1,
+    paddingHorizontal: space.m2,
+    marginRight: space.m1,
+    marginBottom: space.m1,
   })}
 `;
 
 const Title = styled(Text)`
-  ${({ subTitle, theme: { getFont, size, colors, space } }) => ({
-    color: colors.darkBlue,
-    fontFamily: getFont(1),
-    fontSize: subTitle ? size.title1 : size.l1,
-    marginBottom: subTitle ? space.s1 : space.n,
+  ${({ theme: { space } }) => ({
+    marginLeft: space.s2,
   })}
 `;
 

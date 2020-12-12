@@ -2,9 +2,11 @@ import React from 'react';
 import { Pressable } from 'react-native';
 import styled from 'styled-components';
 
+import Notifications from '../../assets/icons/icon-notifications.svg';
 import { images } from '../../constants';
 import Image from '../styles/Image';
 import Text from '../styles/Text';
+import SvgIcon from '../SvgIcon';
 
 const Avatar = ({ avatar, name, onInfoChange }) => {
   return (
@@ -26,6 +28,7 @@ const Avatar = ({ avatar, name, onInfoChange }) => {
           {name}
         </Text>
       </TitleBar>
+      <SvgIcon SvgName={Notifications} width={24} height={24} />
     </Container>
   );
 };
@@ -35,15 +38,16 @@ const Container = styled.View`
   align-items: center;
 
   ${({ theme: { space } }) => ({
-    padding: space.m1,
-    marginBottom: space.m1,
+    paddingHorizontal: space.m3,
+    paddingTop: space.l2,
+    paddingBottom: space.s3,
   })}
 `;
 
 const Box = styled.View`
-  width: 44px;
-  height: 44px;
-  border-radius: 22px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
   overflow: hidden;
 `;
 
