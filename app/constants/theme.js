@@ -16,8 +16,8 @@ const fonts = {
 export default {
   colors,
   size: {
-    s1: 10,
-    s2: 12,
+    s1: 13,
+    s2: 14,
     m1: 15,
     m2: 16,
     l1: 17,
@@ -38,6 +38,7 @@ export default {
     l2: 24,
     l3: 32,
     xl: 40,
+    xxl: 50,
   },
   radii: {
     n: 0,
