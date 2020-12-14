@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { calender } from '../../constants';
+import { calendar } from '../../constants';
 import Image from '../styles/Image';
+import ImageBackground from '../styles/ImageBackground';
 import Text from '../styles/Text';
 
-const { COURSE_CARD_WIDTH, COURSE_CARD_HEIGHT } = calender;
-const imageHeight = COURSE_CARD_HEIGHT * 0.78;
+const { COURSE_CARD_WIDTH, COURSE_CARD_HEIGHT } = calendar;
 
 const CourseCard = ({ image, logo, title, subTitle, caption, avatar, author }) => {
   return (
     <Container>
-      <CoverImage resizeMode="cover" source={image}>
+      <ImageBackground courseImage resizeMode="cover" source={image}>
         <Logo logo3 resizeMode="contain" source={logo} />
         <TextBox>
           <Text body1 white opacity={0.8} marginVertical={8} upper>
@@ -21,7 +21,7 @@ const CourseCard = ({ image, logo, title, subTitle, caption, avatar, author }) =
             {title}
           </Text>
         </TextBox>
-      </CoverImage>
+      </ImageBackground>
       <Wrapper>
         <Image avatar source={avatar} />
         <Info>
@@ -53,11 +53,6 @@ const Container = styled.View`
   })};
 `;
 
-const CoverImage = styled.ImageBackground`
-  width: 100%;
-  height: ${imageHeight}px;
-`;
-
 const Logo = styled(Image)`
   align-self: center;
 
@@ -69,7 +64,7 @@ const Logo = styled(Image)`
 const TextBox = styled.View`
   position: absolute;
   left: 20px;
-  bottom: 24px;
+  bottom: 20px;
   width: 180px;
 `;
 

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Theme } from './app/components';
 import useLoadAssets from './app/hooks/useLoadAssets';
-import { AppNavigator, navigationTheme } from './app/navigation';
+import { FeedNavigator, navigationTheme } from './app/navigation';
 import cache from './app/utility/cache';
 
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
@@ -45,7 +45,7 @@ export default function App() {
     <Theme>
       <NavigationContainer theme={navigationTheme} {...{ initialState, onStateChange }}>
         {/* <AuthNavigator /> */}
-        <AppNavigator />
+        <FeedNavigator />
       </NavigationContainer>
     </Theme>
   );

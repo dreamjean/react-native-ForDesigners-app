@@ -8,7 +8,9 @@ const LogoCard = ({ logo, title }) => {
   return (
     <Container>
       <Image logo1 source={logo} resizeMode="contain" />
-      <Title body2>{title}</Title>
+      <Title dark body2>
+        {title}
+      </Title>
     </Container>
   );
 };
@@ -22,7 +24,7 @@ const Container = styled.View`
     backgroundColor: colors.white,
     borderRadius: radii.s2,
     paddingVertical: space.m1,
-    paddingHorizontal: space.m2,
+    paddingHorizontal: space.m3,
     marginRight: space.m1,
     marginBottom: space.m1,
   })}

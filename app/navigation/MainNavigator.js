@@ -31,7 +31,7 @@ const screenOptions = ({ route }) => ({
   },
 });
 
-const AppNavigator = () => (
+const MainNavigator = () => (
   <Tab.Navigator
     initialRouteName="Home"
     {...{ screenOptions }}
@@ -39,9 +39,6 @@ const AppNavigator = () => (
       labelStyle: {
         fontFamily: getFont(2),
         fontSize: size.s1,
-      },
-      safeAreaInsets: {
-        bottom: 4,
       },
     }}
   >
@@ -51,4 +48,4 @@ const AppNavigator = () => (
   </Tab.Navigator>
 );
 
-export default AppNavigator;
+export default MainNavigator;

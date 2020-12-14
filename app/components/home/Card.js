@@ -9,7 +9,9 @@ const Card = ({ image, heading, logo, title, caption }) => {
     <Container>
       <Cover>
         <Image source={image} />
-        <Heading title2>{heading}</Heading>
+        <Heading white title2>
+          {heading}
+        </Heading>
       </Cover>
       <Info>
         <Image logo2 source={logo} resizeMode="contain" />

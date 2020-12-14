@@ -1,3 +1,4 @@
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -7,19 +8,23 @@ import Text from '../components/styles/Text';
 import { images } from '../constants';
 import { courses, logos, sectionCards } from '../data';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaBox>
-      <ScrollView>
-        <Avatar avatar={images[17]} name="Rokia" />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Avatar
+          avatar={images[17]}
+          name="Rokia"
+          onAvatarPress={() => navigation.navigate('Settings')}
+          onIconPress={() => navigation.navigate('Notifications')}
+        />
         <Wrapper>
           <Listing horizontal showsHorizontalScrollIndicator={false}>
             {logos.map((logo, index) => (
               <LogoCard key={index} logo={logo.image} title={logo.text} />
             ))}
           </Listing>
-        </Wrapper>
-        <Wrapper>
+
           <SubTitle body1>Continue Learning</SubTitle>
           <Listing horizontal showsHorizontalScrollIndicator={false}>
             {sectionCards.map((card, index) => (
@@ -35,7 +40,7 @@ const HomeScreen = () => {
           </Listing>
         </Wrapper>
         <SubTitle body1>Continue Learning</SubTitle>
-        <Listing style={{ paddingTop: 0 }} showsVerticalScrollIndicator={false}>
+        <CoursesBox>
           {courses.map((course, index) => (
             <CourseCard
               key={index}
@@ -48,8 +53,9 @@ const HomeScreen = () => {
               title={course.title}
             />
           ))}
-        </Listing>
+        </CoursesBox>
       </ScrollView>
+      <StatusBar style="dark" />
     </SafeAreaBox>
   );
 };
@@ -62,7 +68,7 @@ const SubTitle = styled(Text)`
   text-transform: uppercase;
 
   ${({ theme: { space } }) => ({
-    paddingLeft: space.m2,
+    marginLeft: space.m3,
   })}
 `;
 
@@ -73,5 +79,14 @@ const Listing = styled.ScrollView`
 `;
 
 const Wrapper = styled.View``;
+
+const CoursesBox = styled.View`
+  flex: 1;
+
+  ${({ theme: { space } }) => ({
+    padding: space.m3,
+    paddingTop: space.n,
+  })}
+`;
 
 export default HomeScreen;
