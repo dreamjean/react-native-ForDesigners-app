@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { calendar } from '../../constants';
+import { calendar } from '../../config';
 import Image from '../styles/Image';
 import ImageBackground from '../styles/ImageBackground';
 import Text from '../styles/Text';
@@ -23,7 +23,7 @@ const CourseCard = ({ image, logo, title, subTitle, caption, avatar, author }) =
         </TextBox>
       </ImageBackground>
       <Wrapper>
-        <Image avatar source={avatar} />
+        <Image avatar1 source={avatar} />
         <Info>
           <Text caption2 dark marginVertical={2}>
             {caption}

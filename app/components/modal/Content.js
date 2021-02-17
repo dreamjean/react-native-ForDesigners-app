@@ -1,7 +1,7 @@
 import React from 'react';
 import Svg, { ClipPath, Defs, Image, Path } from 'react-native-svg';
 
-import { calendar, colors, images } from '../../constants';
+import { calendar, colors, images } from '../../config';
 import View from '../styles/View';
 
 const { width, BAR_HEIGHT } = calendar;

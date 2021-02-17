@@ -2,7 +2,7 @@ import { AntDesign, FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-ico
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 
-import { theme } from '../constants';
+import { theme } from '../config';
 import { CoursesScreen, HomeScreen, ProjectScreen } from '../screens';
 
 const Tab = createBottomTabNavigator();

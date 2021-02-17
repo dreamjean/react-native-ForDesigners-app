@@ -1,9 +1,15 @@
 import styled, { css } from 'styled-components';
 
-const avatarStyle = css`
+const avatar1Style = css`
   width: 32px;
   height: 32px;
   border-radius: 16px;
+`;
+
+const avatar2Style = css`
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
 `;
 
 const logo1Style = css`
@@ -25,7 +31,8 @@ const Image = styled.Image`
   height: 100%;
   width: 100%;
 
-  ${({ avatar }) => avatar && avatarStyle}
+  ${({ avatar1 }) => avatar1 && avatar1Style}
+  ${({ avatar2 }) => avatar2 && avatar2Style}
   ${({ logo1 }) => logo1 && logo1Style}
   ${({ logo2 }) => logo2 && logo2Style}
   ${({ logo3 }) => logo3 && logo3Style}

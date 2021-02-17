@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { calendar } from '../../constants';
+import { calendar } from '../../config';
 
 const { COURSE_IMAGE_HEIGHT } = calendar;
 

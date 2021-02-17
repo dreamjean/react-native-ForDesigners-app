@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pressable } from 'react-native';
 import styled from 'styled-components';
 
+import usersApi from '../../api/users';
 import Notifications from '../../assets/icons/icon-notifications.svg';
-import { images } from '../../constants';
 import Image from '../styles/Image';
 import Text from '../styles/Text';
 import SvgIconButton from '../SvgIconButton';
 
-const Avatar = ({ avatar, name, onAvatarPress, onIconPress }) => {
+const Avatar = ({ name, onAvatarPress, onIconPress }) => {
+  const [photo] = useState('https://share.getcloudapp.com/geu447AY/download/avatar-default.jpg');
+
+  useEffect(() => {
+    loadPhoto();
+  });
+
+  const loadPhoto = async () => {
+    const result = await usersApi.getUser();
+    console.log(result);
+    // if (result.ok) setPhoto(result.data.photo);
+  };
+
   return (
     <Container>
       <Pressable
@@ -17,10 +29,7 @@ const Avatar = ({ avatar, name, onAvatarPress, onIconPress }) => {
           opacity: pressed ? 0.5 : 1,
         })}
       >
-        <Box>
-          {avatar && <Image source={avatar} />}
-          {!avatar && <Image source={images[0]} />}
-        </Box>
+        <Image avatar2 source={{ uri: photo }} />
       </Pressable>
       <TitleBar>
         <Text body2>Welcome back,</Text>
@@ -44,18 +53,11 @@ const Container = styled.View`
   })}
 `;
 
-const Box = styled.View`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  overflow: hidden;
-`;
-
 const TitleBar = styled.View`
   flex: 1;
 
   ${({ theme: { space } }) => ({
-    marginLeft: space.s2,
+    marginLeft: space.m2,
   })}
 `;
 

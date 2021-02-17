@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 
-import { colors } from '../constants';
+import { colors } from '../config';
 
 const SvgIconButton = ({ SvgName, color = colors.blue, width, height, onPress }) => (
   <Pressable

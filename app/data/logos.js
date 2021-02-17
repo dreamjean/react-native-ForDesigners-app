@@ -1,4 +1,4 @@
-import { images } from '../constants';
+import { images } from '../config';
 
 export default [
   {

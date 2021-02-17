@@ -2,7 +2,7 @@ import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import { useEffect, useState } from 'react';
 
-import { fonts, images } from '../constants/assets';
+import { fonts, images } from '../config/assets';
 
 const cacheImages = (images) => {
   return images.map((image) => {

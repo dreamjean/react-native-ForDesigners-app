@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Avatar, Card, CourseCard, LogoCard } from '../components';
 import SafeAreaBox from '../components/styles/SafeAreaBox';
 import Text from '../components/styles/Text';
-import { images } from '../constants';
+import { images } from '../config';
 import { courses, logos, sectionCards } from '../data';
 
 const HomeScreen = ({ navigation }) => {
