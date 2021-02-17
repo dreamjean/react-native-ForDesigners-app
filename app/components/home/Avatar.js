@@ -1,26 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Pressable } from 'react-native';
 import styled from 'styled-components';
 
-import usersApi from '../../api/users';
 import Notifications from '../../assets/icons/icon-notifications.svg';
+import { images } from '../../config';
 import Image from '../styles/Image';
 import Text from '../styles/Text';
 import SvgIconButton from '../SvgIconButton';
 
-const Avatar = ({ name, onAvatarPress, onIconPress }) => {
-  const [photo] = useState('https://share.getcloudapp.com/geu447AY/download/avatar-default.jpg');
-
-  useEffect(() => {
-    loadPhoto();
-  });
-
-  const loadPhoto = async () => {
-    const result = await usersApi.getUser();
-    console.log(result);
-    // if (result.ok) setPhoto(result.data.photo);
-  };
-
+const Avatar = ({ avatar, name, onAvatarPress, onIconPress }) => {
   return (
     <Container>
       <Pressable
@@ -29,7 +17,8 @@ const Avatar = ({ name, onAvatarPress, onIconPress }) => {
           opacity: pressed ? 0.5 : 1,
         })}
       >
-        <Image avatar2 source={{ uri: photo }} />
+        {!avatar && <Image source={images[0]} />}
+        {avatar && <Image avatar2 source={{ uri: avatar }} />}
       </Pressable>
       <TitleBar>
         <Text body2>Welcome back,</Text>

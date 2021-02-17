@@ -1,20 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import usersApi from '../api/users';
 import { Avatar, Card, CourseCard, LogoCard } from '../components';
 import SafeAreaBox from '../components/styles/SafeAreaBox';
 import Text from '../components/styles/Text';
-import { images } from '../config';
 import { courses, logos, sectionCards } from '../data';
 
 const HomeScreen = ({ navigation }) => {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  const getUser = async () => {
+    const result = await usersApi.getUser();
+    if (result.ok) setUser(result.data.results[0]);
+  };
+
   return (
     <SafeAreaBox>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Avatar
-          avatar={images[17]}
-          name="Rokia"
+          avatar={user.picture.medium}
+          name={user.name.first}
           onAvatarPress={() => navigation.navigate('Settings')}
           onIconPress={() => navigation.navigate('Notifications')}
         />

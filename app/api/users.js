@@ -1,9 +1,9 @@
 import { create } from 'apisauce';
 
 const usersApi = create({
-  baseURL: 'https://uinames.com/api',
+  baseURL: 'https://randomuser.me/api',
 });
 
-const getUser = () => usersApi.get('/?ext');
+const getUser = () => usersApi.get('/?exc=login');
 
 export default { getUser };
