@@ -1,7 +1,7 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 
-import { NotificationsScreen, SettingsScreen } from '../screens';
+import { NotificationsScreen, SectionScreen, SettingsScreen } from '../screens';
 import MainNavigator from './MainNavigator';
 
 const Stack = createStackNavigator();
@@ -17,11 +17,23 @@ const FeedNavigator = () => (
         navigation.dangerouslyGetState().routes.findIndex((r) => r.key === route.key) > 0
           ? 0
           : undefined,
-      ...TransitionPresets.ModalPresentationIOS,
     })}
   >
-    <Stack.Screen name="Settings" component={SettingsScreen} />
-    <Stack.Screen name="Notifications" component={NotificationsScreen} />
+    <Stack.Screen
+      name="Settings"
+      component={SettingsScreen}
+      options={{ ...TransitionPresets.ModalPresentationIOS }}
+    />
+    <Stack.Screen
+      name="Notifications"
+      component={NotificationsScreen}
+      options={{ ...TransitionPresets.ModalPresentationIOS }}
+    />
+    <Stack.Screen
+      name="Section"
+      component={SectionScreen}
+      options={{ ...TransitionPresets.ModalSlideFromsBottomIOS }}
+    />
     <Stack.Screen name="Main" component={MainNavigator} />
   </Stack.Navigator>
 );

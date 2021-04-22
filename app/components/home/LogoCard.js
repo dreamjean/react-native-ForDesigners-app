@@ -8,7 +8,7 @@ const LogoCard = ({ logo, title }) => {
   return (
     <Container>
       <Image logo1 source={logo} resizeMode="contain" />
-      <Title dark body2>
+      <Title dark subTitle1>
         {title}
       </Title>
     </Container>

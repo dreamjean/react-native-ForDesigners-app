@@ -1,41 +1,50 @@
 import React from 'react';
+import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components';
 
 import Image from '../styles/Image';
 import Text from '../styles/Text';
 
-const Card = ({ image, heading, logo, title, caption }) => {
+const Card = ({ image, heading, logo, title, caption, onPress }) => {
   return (
-    <Container>
-      <Cover>
-        <Image source={image} />
-        <Heading white title2>
-          {heading}
-        </Heading>
-      </Cover>
-      <Info>
-        <Image logo2 source={logo} resizeMode="contain" />
-        <InfoBox>
-          <Text title1 dark>
-            {title}
-          </Text>
-          <Text body2>{caption}</Text>
-        </InfoBox>
-      </Info>
-    </Container>
+    <Touchable {...{ onPress }}>
+      <Container>
+        <Cover>
+          <Image source={image} />
+          <Heading white title2>
+            {heading}
+          </Heading>
+        </Cover>
+        <Info>
+          <Image logo2 source={logo} resizeMode="contain" />
+          <InfoBox>
+            <Text title1 dark>
+              {title}
+            </Text>
+            <Text body2>{caption}</Text>
+          </InfoBox>
+        </Info>
+      </Container>
+    </Touchable>
   );
 };
+
+const Touchable = styled(RectButton)`
+  ${({ theme: { radii, space } }) => ({
+    borderRadius: radii.m1,
+    marginRight: space.m3,
+    marginBottom: space.m2,
+  })}
+`;
 
 const Container = styled.View`
   width: 315px;
   height: 280px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 
-  ${({ theme: { colors, radii, space } }) => ({
+  ${({ theme: { colors, radii } }) => ({
     backgroundColor: colors.white,
     borderRadius: radii.m1,
-    marginRight: space.m3,
-    marginBottom: space.m2,
   })}
 `;
 

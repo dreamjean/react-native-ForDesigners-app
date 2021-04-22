@@ -17,11 +17,10 @@ const Avatar = ({ avatar, name, onAvatarPress, onIconPress }) => {
           opacity: pressed ? 0.5 : 1,
         })}
       >
-        {!avatar && <Image source={images[0]} />}
-        {avatar && <Image avatar2 source={{ uri: avatar }} />}
+        <Image avatar2 resizeMode="cover" source={avatar ? { uri: avatar } : images[0]} />
       </Pressable>
       <TitleBar>
-        <Text body2>Welcome back,</Text>
+        <Text body1>Welcome back,</Text>
         <Text subTitle2 dark>
           {name}
         </Text>

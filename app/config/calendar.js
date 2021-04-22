@@ -9,6 +9,7 @@ const COURSE_CARD_HEIGHT = COURSE_CARD_WIDTH * 0.9;
 const COURSE_IMAGE_HEIGHT = COURSE_CARD_HEIGHT * 0.78;
 const BAR_HEIGHT = 185;
 const SETTINGS_SCREEN_HEIGHT = height * 0.9;
+const SECTION_IMAGE_HEIGHT = height * 0.45;
 
 export default {
   height,
@@ -18,4 +19,5 @@ export default {
   COURSE_CARD_WIDTH,
   COURSE_IMAGE_HEIGHT,
   SETTINGS_SCREEN_HEIGHT,
+  SECTION_IMAGE_HEIGHT,
 };

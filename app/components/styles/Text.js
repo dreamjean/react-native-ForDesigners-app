@@ -23,7 +23,7 @@ const caption1Style = css`
 
 const caption2Style = css`
   ${({ theme: { getFont, size } }) => ({
-    fontFamily: getFont(2),
+    fontFamily: getFont(1),
     fontSize: size.s2,
   })}
 `;
@@ -44,14 +44,14 @@ const body2Style = css`
 
 const subTitle1Style = css`
   ${({ theme: { getFont, size } }) => ({
-    fontFamily: getFont(2),
+    fontFamily: getFont(1),
     fontSize: size.l1,
   })}
 `;
 
 const subTitle2Style = css`
   ${({ theme: { getFont, size } }) => ({
-    fontFamily: getFont(2),
+    fontFamily: getFont(1),
     fontSize: size.l2,
   })}
 `;

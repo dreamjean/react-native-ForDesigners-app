@@ -1,7 +1,9 @@
+import { ApolloProvider } from '@apollo/client';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import React, { useEffect, useState } from 'react';
 
+import { client as ApolloClient } from './app/api/client';
 import { Theme } from './app/components';
 import useLoadAssets from './app/hooks/useLoadAssets';
 import { FeedNavigator, navigationTheme } from './app/navigation';
@@ -42,11 +44,13 @@ export default function App() {
     );
 
   return (
-    <Theme>
-      <NavigationContainer theme={navigationTheme} {...{ initialState, onStateChange }}>
-        {/* <AuthNavigator /> */}
-        <FeedNavigator />
-      </NavigationContainer>
-    </Theme>
+    <ApolloProvider client={ApolloClient}>
+      <Theme>
+        <NavigationContainer theme={navigationTheme} {...{ initialState, onStateChange }}>
+          {/* <AuthNavigator /> */}
+          <FeedNavigator />
+        </NavigationContainer>
+      </Theme>
+    </ApolloProvider>
   );
 }

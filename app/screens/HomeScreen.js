@@ -1,19 +1,56 @@
+import { useQuery } from '@apollo/client';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { userClient } from '../api/user';
 import { Avatar, Card, CourseCard, LogoCard } from '../components';
 import SafeAreaBox from '../components/styles/SafeAreaBox';
 import Text from '../components/styles/Text';
-import { courses, logos, sectionCards } from '../data';
+import { courses, logos } from '../data';
+import GET_CARDS_ITEMS from '../query/sectionCards';
 
 const HomeScreen = ({ navigation }) => {
+  const [user, setUser] = useState({ email: '', name: '', photo: null, position: '' });
+  const { loading, error, data } = useQuery(GET_CARDS_ITEMS);
+  const sectionCards = data?.cardsCollection?.items;
+
+  const restoreUser = async () => {
+    try {
+      await userClient
+        .get()
+        .then((response) => response.data[0])
+        .then((result) => {
+          setUser(result);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    restoreUser();
+  }, [user]);
+
+  if (loading)
+    return (
+      <Text body2 dark>
+        Loading...
+      </Text>
+    );
+  if (error)
+    return (
+      <Text body2 dark>
+        Error...
+      </Text>
+    );
+
   return (
     <SafeAreaBox>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Avatar
-          // avatar={user.picture.medium}
-          // name={user.name.first}
+          avatar={user.photo}
+          name={user.name}
           onAvatarPress={() => navigation.navigate('Settings')}
           onIconPress={() => navigation.navigate('Notifications')}
         />
@@ -25,15 +62,17 @@ const HomeScreen = ({ navigation }) => {
           </Listing>
 
           <SubTitle body1>Continue Learning</SubTitle>
+
           <Listing horizontal showsHorizontalScrollIndicator={false}>
-            {sectionCards.map((card, index) => (
+            {sectionCards.map((card) => (
               <Card
-                key={index}
+                key={card.id}
                 image={card.image}
                 heading={card.heading}
                 logo={card.logo}
                 title={card.title}
                 caption={card.caption}
+                onPress={() => navigation.navigate('Section', card)}
               />
             ))}
           </Listing>

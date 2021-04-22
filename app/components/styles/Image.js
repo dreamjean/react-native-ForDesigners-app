@@ -12,6 +12,15 @@ const avatar2Style = css`
   border-radius: 22px;
 `;
 
+const logoStyle = css`
+  width: 24px;
+  height: 24px;
+
+  ${({ theme: { space } }) => ({
+    marginRight: space.s2,
+  })}
+`;
+
 const logo1Style = css`
   width: 36px;
   height: 36px;
@@ -33,6 +42,7 @@ const Image = styled.Image`
 
   ${({ avatar1 }) => avatar1 && avatar1Style}
   ${({ avatar2 }) => avatar2 && avatar2Style}
+  ${({ logo }) => logo && logoStyle}
   ${({ logo1 }) => logo1 && logo1Style}
   ${({ logo2 }) => logo2 && logo2Style}
   ${({ logo3 }) => logo3 && logo3Style}
