@@ -5,23 +5,25 @@ import styled from 'styled-components';
 import Image from '../styles/Image';
 import Text from '../styles/Text';
 
-const Card = ({ image, heading, logo, title, caption, onPress }) => {
+const Card = ({ image, title, logo, subTitle, caption, onPress }) => {
   return (
     <Touchable {...{ onPress }}>
-      <Container>
+      <Container style={{ elevation: 10 }}>
         <Cover>
-          <Image source={image} />
+          <Image source={{ uri: image }} />
           <Heading white title2>
-            {heading}
+            {title}
           </Heading>
         </Cover>
         <Info>
-          <Image logo2 source={logo} resizeMode="contain" />
+          <Image logo2 source={{ uri: logo }} resizeMode="contain" />
           <InfoBox>
-            <Text title1 dark>
-              {title}
+            <Text subTitle1 dark marginVertical={4}>
+              {subTitle}
             </Text>
-            <Text body2>{caption}</Text>
+            <Text caption2 upper marginVertical={4}>
+              {caption}
+            </Text>
           </InfoBox>
         </Info>
       </Container>

@@ -67,10 +67,10 @@ const HomeScreen = ({ navigation }) => {
             {sectionCards.map((card) => (
               <Card
                 key={card.id}
-                image={card.image}
-                heading={card.heading}
-                logo={card.logo}
+                image={card.image.url}
                 title={card.title}
+                logo={card.logo.url}
+                subTitle={card.subTitle}
                 caption={card.caption}
                 onPress={() => navigation.navigate('Section', card)}
               />

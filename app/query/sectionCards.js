@@ -5,7 +5,7 @@ const GET_CARDS_ITEMS = gql`
     cardsCollection {
       items {
         id
-        heading
+        title
         image {
           title
           description
@@ -26,7 +26,7 @@ const GET_CARDS_ITEMS = gql`
           width
           height
         }
-        title
+        subTitle
         caption
         content
       }

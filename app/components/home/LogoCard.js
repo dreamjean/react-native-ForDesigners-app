@@ -6,7 +6,7 @@ import Text from '../styles/Text';
 
 const LogoCard = ({ logo, title }) => {
   return (
-    <Container>
+    <Container style={{ elevation: 10 }}>
       <Image logo1 source={logo} resizeMode="contain" />
       <Title dark subTitle1>
         {title}

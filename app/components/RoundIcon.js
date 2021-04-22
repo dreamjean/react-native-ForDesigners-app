@@ -5,28 +5,30 @@ import styled from 'styled-components';
 import { colors } from '../config';
 
 const RoundIcon = ({
-  backgroundColor = colors.white,
+  bgColor,
+  color = colors.blue,
+  iconRatio = 0.6,
+  iconName,
   IconComponent = MaterialCommunityIcons,
-  iconColor = colors.blue,
-  iconRatio = 0.7,
-  name,
-  size,
+  size = 40,
 }) => {
   return (
-    <Container {...{ backgroundColor, size }}>
-      <IconComponent name={name} size={iconRatio * size} color={iconColor} />
+    <Container {...{ bgColor, size }} style={{ elevation: 10 }}>
+      <IconComponent name={iconName} size={iconRatio * size} color={color} />
     </Container>
   );
 };
 
 const Container = styled.View`
-  ${({ backgroundColor, size }) => ({
-    backgroundColor,
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+
+  ${({ size, bgColor }) => ({
+    backgroundColor: bgColor,
+    borderRadius: size / 2,
     width: size,
     height: size,
-    borderRadius: size / 2,
-    justifyContent: 'center',
-    alignItems: 'center',
   })}
 `;
 

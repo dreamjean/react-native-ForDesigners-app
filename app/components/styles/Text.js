@@ -22,8 +22,8 @@ const caption1Style = css`
 `;
 
 const caption2Style = css`
-  ${({ theme: { getFont, size } }) => ({
-    fontFamily: getFont(1),
+  ${({ bold, theme: { getFont, size } }) => ({
+    fontFamily: bold ? getFont(1) : getFont(2),
     fontSize: size.s2,
   })}
 `;

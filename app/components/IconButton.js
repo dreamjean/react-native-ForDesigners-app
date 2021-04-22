@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 
-import Icon from './Icon';
+import RoundIcon from './RoundIcon';
 
 const IconButton = ({ onPress, style, ...rest }) => {
   return (
@@ -14,7 +14,7 @@ const IconButton = ({ onPress, style, ...rest }) => {
       ]}
       {...{ onPress }}
     >
-      <Icon {...rest} />
+      <RoundIcon {...rest} />
     </Pressable>
   );
 };

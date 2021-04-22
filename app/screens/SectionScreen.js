@@ -14,12 +14,12 @@ const SectionScreen = ({ navigation, route }) => {
   const section = route?.params;
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <Container>
         <Cover>
-          <Image source={section.image} />
+          <Image source={{ uri: section.image.url }} />
           <Wrapper>
-            <Image logo source={section.logo} />
+            <Image logo source={{ uri: section.logo.url }} />
             <Text caption1 white opacity={0.8} upper>
               {section.title}
             </Text>
@@ -31,9 +31,9 @@ const SectionScreen = ({ navigation, route }) => {
             {section.caption}
           </Caption>
           <IconButton
-            style={{ position: 'absolute', top: 25, right: 20 }}
+            style={{ position: 'absolute', top: 28, right: 20 }}
             iconName="close"
-            bgColor={colors.grey}
+            bgColor={colors.white}
             color={colors.darkBlue}
             size={30}
             onPress={() => navigation.goBack()}
