@@ -20,15 +20,15 @@ const SectionScreen = ({ navigation, route }) => {
           <Image source={{ uri: section.image.url }} />
           <Wrapper>
             <Image logo source={{ uri: section.logo.url }} />
-            <Text caption1 white opacity={0.8} upper>
-              {section.title}
+            <Text caption1 white opacity={0.65} upper>
+              {section.caption}
             </Text>
           </Wrapper>
           <Title title2 white>
-            {section.heading}
+            {section.title}
           </Title>
           <Caption body1 white>
-            {section.caption}
+            {section.subTitle}
           </Caption>
           <IconButton
             style={{ position: 'absolute', top: 28, right: 20 }}

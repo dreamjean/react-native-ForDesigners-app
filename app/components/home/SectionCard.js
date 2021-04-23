@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Image from '../styles/Image';
 import Text from '../styles/Text';
 
-const Card = ({ image, title, logo, subTitle, caption, onPress }) => {
+const SectionCard = ({ image, title, logo, subTitle, caption, onPress }) => {
   return (
     <Touchable {...{ onPress }}>
       <Container style={{ elevation: 10 }}>
@@ -18,10 +18,10 @@ const Card = ({ image, title, logo, subTitle, caption, onPress }) => {
         <Info>
           <Image logo2 source={{ uri: logo }} resizeMode="contain" />
           <InfoBox>
-            <Text subTitle1 dark marginVertical={4}>
+            <Text subTitle1 dark>
               {subTitle}
             </Text>
-            <Text caption2 upper marginVertical={4}>
+            <Text caption2 upper marginTop={5}>
               {caption}
             </Text>
           </InfoBox>
@@ -84,4 +84,4 @@ const InfoBox = styled.View`
   })}
 `;
 
-export default Card;
+export default SectionCard;

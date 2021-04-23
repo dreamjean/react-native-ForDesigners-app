@@ -1,11 +1,13 @@
 import React from 'react';
-import { Pressable } from 'react-native';
 import styled from 'styled-components';
 
 import { Content, IconButton, ListItem } from '../components';
 import Text from '../components/styles/Text';
-import { colors } from '../config';
+import { calendar, colors } from '../config';
 import { settingItems } from '../data';
+
+const { width } = calendar;
+let cardWidth = width > 500 ? 500 : width;
 
 const SettingsScreen = ({ navigation }) => {
   return (
@@ -15,24 +17,17 @@ const SettingsScreen = ({ navigation }) => {
           <Text title2 white>
             Rokia
           </Text>
-          <Text white marginVertical={8} opacity={0.65}>
+          <Text white marginTop={8} opacity={0.65}>
             rokia@demo.com
           </Text>
         </TitleBox>
-        <Pressable
+        <IconButton
+          style={{ alignSelf: 'center', marginTop: 8 }}
+          size={48}
+          iconName="close"
+          bgColor={colors.white}
           onPress={() => navigation.goBack()}
-          style={({ pressed }) => ({
-            opacity: pressed ? 0.5 : 1,
-            alignSelf: 'center',
-          })}
-        >
-          <IconButton
-            size={48}
-            iconName="close"
-            bgColor={colors.white}
-            onPress={() => navigation.goBack()}
-          />
-        </Pressable>
+        />
       </Content>
       <Wrapper>
         {settingItems.map((item) => (
@@ -44,7 +39,8 @@ const SettingsScreen = ({ navigation }) => {
 };
 
 const Container = styled.View`
-  flex: 1;
+  width: ${cardWidth}px;
+  align-self: center;
 `;
 
 const TitleBox = styled.View`

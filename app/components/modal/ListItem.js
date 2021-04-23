@@ -13,7 +13,7 @@ const ListItem = ({ icon, title, subTitle }) => {
         <Text title1 dark>
           {title}
         </Text>
-        <Text body2 marginVertical={5}>
+        <Text body2 marginTop={5}>
           {subTitle}
         </Text>
       </TextBox>

@@ -57,11 +57,11 @@ const subTitle2Style = css`
 `;
 
 const Text = styled.Text`
-  ${({ white, dark, upper, marginVertical, opacity, theme: { colors } }) => ({
+  ${({ white, dark, upper, marginTop, opacity, theme: { colors } }) => ({
     color: white ? colors.white : dark ? colors.darkBlue : colors.grey,
     textTransform: upper ? 'uppercase' : 'none',
     opacity,
-    marginVertical,
+    marginTop,
   })}
 
   ${({ body1 }) => body1 && body1Style}

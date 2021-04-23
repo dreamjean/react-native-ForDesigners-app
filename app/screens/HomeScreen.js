@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { userClient } from '../api/user';
-import { Avatar, Card, CourseCard, LogoCard } from '../components';
+import { Avatar, CourseCard, LogoCard, SectionCard } from '../components';
 import SafeAreaBox from '../components/styles/SafeAreaBox';
 import Text from '../components/styles/Text';
 import { courses, logos } from '../data';
@@ -55,7 +55,11 @@ const HomeScreen = ({ navigation }) => {
           onIconPress={() => navigation.navigate('Notifications')}
         />
         <Wrapper>
-          <Listing horizontal showsHorizontalScrollIndicator={false}>
+          <Listing
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ padding: 20 }}
+          >
             {logos.map((logo, index) => (
               <LogoCard key={index} logo={logo.image} title={logo.text} />
             ))}
@@ -63,9 +67,13 @@ const HomeScreen = ({ navigation }) => {
 
           <SubTitle body1>Continue Learning</SubTitle>
 
-          <Listing horizontal showsHorizontalScrollIndicator={false}>
+          <Listing
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ padding: 20 }}
+          >
             {sectionCards.map((card) => (
-              <Card
+              <SectionCard
                 key={card.id}
                 image={card.image.url}
                 title={card.title}
@@ -77,7 +85,7 @@ const HomeScreen = ({ navigation }) => {
             ))}
           </Listing>
         </Wrapper>
-        <SubTitle body1>Continue Learning</SubTitle>
+        <SubTitle body1>Popular Courses</SubTitle>
         <CoursesBox>
           {courses.map((course, index) => (
             <CourseCard
@@ -106,24 +114,22 @@ const SubTitle = styled(Text)`
   text-transform: uppercase;
 
   ${({ theme: { space } }) => ({
-    marginLeft: space.m3,
+    marginLeft: space.l1,
   })}
 `;
 
-const Listing = styled.ScrollView`
-  ${({ theme: { space } }) => ({
-    padding: space.m3,
-  })}
-`;
+const Listing = styled.ScrollView``;
 
 const Wrapper = styled.View``;
 
 const CoursesBox = styled.View`
   flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
 
   ${({ theme: { space } }) => ({
-    padding: space.m3,
-    paddingTop: space.n,
+    paddingLeft: space.s3,
+    paddingBottom: space.m3,
   })}
 `;
 

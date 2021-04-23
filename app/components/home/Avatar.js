@@ -35,7 +35,7 @@ const Container = styled.View`
   align-items: center;
 
   ${({ theme: { space } }) => ({
-    paddingHorizontal: space.m3,
+    paddingHorizontal: space.l1,
     paddingTop: space.l3,
     paddingBottom: space.m1,
   })}
