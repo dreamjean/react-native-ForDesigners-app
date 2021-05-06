@@ -1,40 +1,17 @@
 import { ApolloProvider } from '@apollo/client';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { client as ApolloClient } from './app/api/client';
 import { Theme } from './app/components';
 import useLoadAssets from './app/hooks/useLoadAssets';
-import { FeedNavigator, navigationTheme } from './app/navigation';
-import cache from './app/utility/cache';
-
-const PERSISTENCE_KEY = 'NAVIGATION_STATE';
+import { AppNavigator, navigationTheme } from './app/navigation';
 
 export default function App() {
-  const [isReady, setIsReady] = useState(false);
-  const [initialState, setInitalState] = useState();
   const { assetsLoaded, setAssetsLoaded, loadAssetsAsync } = useLoadAssets();
 
-  const restoreState = async () => {
-    try {
-      const state = (await cache.get(PERSISTENCE_KEY)) || undefined;
-
-      setInitalState(state);
-    } finally {
-      setIsReady(true);
-    }
-
-    if (!isReady) restoreState();
-  };
-
-  useEffect(() => {
-    restoreState();
-  }, [isReady]);
-
-  const onStateChange = (PERSISTENCE_KEY, state) => cache.store(PERSISTENCE_KEY, state);
-
-  if (!assetsLoaded || !isReady)
+  if (!assetsLoaded)
     return (
       <AppLoading
         startAsync={loadAssetsAsync}
@@ -46,9 +23,9 @@ export default function App() {
   return (
     <ApolloProvider client={ApolloClient}>
       <Theme>
-        <NavigationContainer theme={navigationTheme} {...{ initialState, onStateChange }}>
+        <NavigationContainer theme={navigationTheme}>
           {/* <AuthNavigator /> */}
-          <FeedNavigator />
+          <AppNavigator />
         </NavigationContainer>
       </Theme>
     </ApolloProvider>

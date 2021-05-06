@@ -4,5 +4,8 @@ export default {
   darkGrey: '#3c4560',
   grey: '#b8bece',
   lightGrey: '#f0f3f5',
-  white: '#ffffff',
+  white: '#fff',
+  transparent: 'rgba(255,255, 255, 0)',
+  black: '#000',
+  medium: 'rgba(0, 0, 0, 0.25)',
 };

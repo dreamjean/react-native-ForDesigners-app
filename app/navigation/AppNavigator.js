@@ -6,10 +6,8 @@ import MainNavigator from './MainNavigator';
 
 const Stack = createStackNavigator();
 
-const FeedNavigator = () => (
+const AppNavigator = () => (
   <Stack.Navigator
-    initialRouteName="Main"
-    mode="modal"
     screenOptions={({ route, navigation }) => ({
       headerShown: false,
       cardOverlayEnabled: true,
@@ -19,6 +17,7 @@ const FeedNavigator = () => (
           : undefined,
     })}
   >
+    <Stack.Screen name="Main" component={MainNavigator} />
     <Stack.Screen
       name="Settings"
       component={SettingsScreen}
@@ -34,8 +33,7 @@ const FeedNavigator = () => (
       component={SectionScreen}
       options={{ ...TransitionPresets.ModalSlideFromsBottomIOS }}
     />
-    <Stack.Screen name="Main" component={MainNavigator} />
   </Stack.Navigator>
 );
 
-export default FeedNavigator;
+export default AppNavigator;
