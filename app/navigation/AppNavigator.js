@@ -8,6 +8,7 @@ const Stack = createStackNavigator();
 
 const AppNavigator = () => (
   <Stack.Navigator
+    mode="modal"
     screenOptions={({ route, navigation }) => ({
       headerShown: false,
       cardOverlayEnabled: true,
@@ -31,7 +32,7 @@ const AppNavigator = () => (
     <Stack.Screen
       name="Section"
       component={SectionScreen}
-      options={{ ...TransitionPresets.ModalSlideFromsBottomIOS }}
+      options={{ ...TransitionPresets.ModalSlideFromBottomIOS }}
     />
   </Stack.Navigator>
 );

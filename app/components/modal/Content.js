@@ -1,8 +1,8 @@
 import React from 'react';
 import Svg, { ClipPath, Defs, Image, Path } from 'react-native-svg';
+import styled from 'styled-components';
 
 import { calendar, colors, images } from '../../config';
-import View from '../styles/View';
 
 const { width, BAR_HEIGHT } = calendar;
 const x = width;
@@ -16,7 +16,7 @@ const d = `M 0 0 V ${y} C ${midX1} ${midY} ${midX2} ${midY} ${x} ${y} V 0 Z`;
 
 const Content = ({ children }) => {
   return (
-    <View>
+    <Container>
       <Svg
         width="100%"
         height={BAR_HEIGHT}
@@ -39,8 +39,14 @@ const Content = ({ children }) => {
         />
       </Svg>
       {children}
-    </View>
+    </Container>
   );
 };
+
+const Container = styled.View`
+  ${({ theme: { colors } }) => ({
+    backgroundColor: colors.lightGrey,
+  })}
+`;
 
 export default Content;

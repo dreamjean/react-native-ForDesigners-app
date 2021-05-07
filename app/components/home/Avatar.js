@@ -36,7 +36,7 @@ const Container = styled.View`
 
   ${({ theme: { space } }) => ({
     paddingHorizontal: space.l1,
-    paddingTop: space.l3,
+    paddingTop: space.xxl,
     paddingBottom: space.m1,
   })}
 `;

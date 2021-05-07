@@ -36,6 +36,11 @@ const logo3Style = css`
   height: 48px;
 `;
 
+const iconStyle = css`
+  width: 24px;
+  height: 24px;
+`;
+
 const Image = styled.Image`
   height: 100%;
   width: 100%;
@@ -46,6 +51,7 @@ const Image = styled.Image`
   ${({ logo1 }) => logo1 && logo1Style}
   ${({ logo2 }) => logo2 && logo2Style}
   ${({ logo3 }) => logo3 && logo3Style}
+  ${({ icon }) => icon && iconStyle}
 `;
 
 export default Image;

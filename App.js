@@ -6,7 +6,7 @@ import React from 'react';
 import { client as ApolloClient } from './app/api/client';
 import { Theme } from './app/components';
 import useLoadAssets from './app/hooks/useLoadAssets';
-import { AppNavigator, navigationTheme } from './app/navigation';
+import { AuthNavigator, navigationTheme } from './app/navigation';
 
 export default function App() {
   const { assetsLoaded, setAssetsLoaded, loadAssetsAsync } = useLoadAssets();
@@ -24,8 +24,8 @@ export default function App() {
     <ApolloProvider client={ApolloClient}>
       <Theme>
         <NavigationContainer theme={navigationTheme}>
-          {/* <AuthNavigator /> */}
-          <AppNavigator />
+          <AuthNavigator />
+          {/* <AppNavigator /> */}
         </NavigationContainer>
       </Theme>
     </ApolloProvider>

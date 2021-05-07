@@ -19,7 +19,7 @@ export const images = [
   require('../assets/background16.jpg'),
   // avatar 17
   require('../assets/avatar.jpeg'),
-  //logo 18~27
+  //logo 18~28
   require('../assets/logo-framerx.png'),
   require('../assets/logo-figma.png'),
   require('../assets/logo-studio.png'),
@@ -31,6 +31,8 @@ export const images = [
   require('../assets/logo-xcode.png'),
   require('../assets/logo-xd.png'),
   require('../assets/logo-dc.png'),
+  // auth background 28
+  require('../assets/geometry.jpg'),
 ];
 
 export const fonts = {

@@ -1,3 +1,4 @@
+import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { PanGestureHandler } from 'react-native-gesture-handler';
@@ -48,7 +49,7 @@ const ProjectScreen = () => {
 
     translateX.value = 0;
     translateY.value = 0;
-    scale.value = 1;
+    scale.value = withTiming(1, timingConfig);
 
     secondScale.value = 0.9;
     secondTransY.value = 38;
@@ -104,6 +105,7 @@ const ProjectScreen = () => {
       } else {
         translateY.value = withSpring(1000, { velocity: velocityY }, runOnJS(resetNextCard)());
         translateX.value = withSpring(0, { velocity: velocityX });
+        scale.value = 0;
         imgOpacity.value = 0;
       }
       imgOpacity.value = withTiming(1, timingConfig);
@@ -120,7 +122,11 @@ const ProjectScreen = () => {
     return {
       position: 'absolute',
       opacity: imgOpacity.value,
-      transform: [{ translateX: translateX.value }, { translateY: translateY.value }],
+      transform: [
+        { translateX: translateX.value },
+        { translateY: translateY.value },
+        { scale: scale.value },
+      ],
     };
   });
 
@@ -172,6 +178,7 @@ const ProjectScreen = () => {
           </Animated.View>
         </Animated.View>
       </PanGestureHandler>
+      <StatusBar style="dark" />
     </Container>
   );
 };

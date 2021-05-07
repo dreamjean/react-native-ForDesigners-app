@@ -42,6 +42,25 @@ const body2Style = css`
   })}
 `;
 
+const buttonStyle = css`
+  text-transform: uppercase;
+
+  ${({ color, theme: { getFont, size } }) => ({
+    fontFamily: getFont(1),
+    fontSize: size.l2,
+    color,
+  })}
+`;
+
+const dangerStyle = css`
+  ${({ theme: { colors, getFont, size, space } }) => ({
+    color: colors.danger,
+    fontFamily: getFont(1),
+    fontSize: size.s1,
+    marginLeft: space.m2,
+  })}
+`;
+
 const subTitle1Style = css`
   ${({ theme: { getFont, size } }) => ({
     fontFamily: getFont(1),
@@ -66,8 +85,10 @@ const Text = styled.Text`
 
   ${({ body1 }) => body1 && body1Style}
   ${({ body2 }) => body2 && body2Style}
+  ${({ button }) => button && buttonStyle}
   ${({ caption1 }) => caption1 && caption1Style}
   ${({ caption2 }) => caption2 && caption2Style}
+  ${({ danger }) => danger && dangerStyle}
   ${({ title1 }) => title1 && title1Style}
   ${({ title2 }) => title2 && title2Style}
   ${({ subTitle1 }) => subTitle1 && subTitle1Style}

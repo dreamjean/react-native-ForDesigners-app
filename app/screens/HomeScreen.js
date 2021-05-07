@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 import { userClient } from '../api/user';
 import { Avatar, CourseCard, LogoCard, SectionCard } from '../components';
-import SafeAreaBox from '../components/styles/SafeAreaBox';
 import Text from '../components/styles/Text';
 import { courses, logos } from '../data';
 import GET_CARDS_ITEMS from '../query/sectionCards';
@@ -46,7 +45,7 @@ const HomeScreen = ({ navigation }) => {
     );
 
   return (
-    <SafeAreaBox>
+    <Container>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Avatar
           avatar={user.photo}
@@ -102,9 +101,13 @@ const HomeScreen = ({ navigation }) => {
         </CoursesBox>
       </ScrollView>
       <StatusBar style="dark" />
-    </SafeAreaBox>
+    </Container>
   );
 };
+
+const Container = styled.View`
+  flex: 1;
+`;
 
 const ScrollView = styled.ScrollView`
   flex: 1;

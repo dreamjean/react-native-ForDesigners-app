@@ -4,10 +4,9 @@ import styled from 'styled-components';
 
 import { calendar } from '../../config';
 import Image from '../styles/Image';
-import ImageBackground from '../styles/ImageBackground';
 import Text from '../styles/Text';
 
-const { width, COURSE_CARD_HEIGHT } = calendar;
+const { width, COURSE_CARD_HEIGHT, COURSE_IMAGE_HEIGHT } = calendar;
 
 const getCourseWidth = (screenWidth) => {
   let cardWidth = screenWidth - 40;
@@ -67,6 +66,11 @@ const Container = styled.View`
     marginHorizontal: space.s3,
     marginTop: space.m3,
   })};
+`;
+
+const ImageBackground = styled.ImageBackground`
+  width: 100%;
+  height: ${COURSE_IMAGE_HEIGHT}px;
 `;
 
 const Logo = styled(Image)`

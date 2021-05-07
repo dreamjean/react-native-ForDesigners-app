@@ -1,11 +1,15 @@
 export default {
   blue: '#4775f2',
+  blue2: '#5263ff',
   darkBlue: '#212C4F',
+  lightBlue2: 'rgba(0, 100, 255, 0.35)',
   darkGrey: '#3c4560',
   grey: '#b8bece',
+  grey2: '#dbdfea',
   lightGrey: '#f0f3f5',
   white: '#fff',
   transparent: 'rgba(255,255, 255, 0)',
   black: '#000',
   medium: 'rgba(0, 0, 0, 0.25)',
+  danger: '#ff5252',
 };

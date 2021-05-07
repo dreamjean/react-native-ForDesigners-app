@@ -89,7 +89,7 @@ const ProjectCard = ({ image, title, author, text, setCardOpened }) => {
     <Pressable onPress={openCard} onLongPress={() => setCardOpened(false)}>
       <AnimatedContainer style={stylec}>
         <Cover>
-          <Image style={{ height: '100%', width: '100%' }} source={image} />
+          <Image source={image} />
           <AnimatedTitle title1 white style={stylet}>
             {title}
           </AnimatedTitle>

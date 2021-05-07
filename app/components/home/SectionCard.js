@@ -9,12 +9,11 @@ const SectionCard = ({ image, title, logo, subTitle, caption, onPress }) => {
   return (
     <Touchable {...{ onPress }}>
       <Container style={{ elevation: 10 }}>
-        <Cover>
-          <Image source={{ uri: image }} />
+        <ImageCover source={{ uri: image }}>
           <Heading white title2>
             {title}
           </Heading>
-        </Cover>
+        </ImageCover>
         <Info>
           <Image logo2 source={{ uri: logo }} resizeMode="contain" />
           <InfoBox>
@@ -42,6 +41,7 @@ const Touchable = styled(RectButton)`
 const Container = styled.View`
   width: 315px;
   height: 280px;
+  overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 
   ${({ theme: { colors, radii } }) => ({
@@ -50,19 +50,12 @@ const Container = styled.View`
   })}
 `;
 
-const Cover = styled.View`
+const ImageCover = styled.ImageBackground`
   width: 100%;
   height: 200px;
-  overflow: hidden;
-
-  ${({ theme: { radii } }) => ({
-    borderTopLeftRadius: radii.m1,
-    borderTopRightRadius: radii.m1,
-  })}
 `;
 
 const Heading = styled(Text)`
-  position: absolute;
   top: 20px;
   left: 20px;
   width: 170px;
