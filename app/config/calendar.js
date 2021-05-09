@@ -9,10 +9,12 @@ const SETTINGS_SCREEN_HEIGHT = height * 0.9;
 const SECTION_IMAGE_HEIGHT = height * 0.45;
 const PROJECT_CARD_WIDTH = 315;
 const PROJECT_CARD_HEIGHT = 460;
+const AUTH_CARD_WIDTH = width * 0.8;
 
 export default {
   height,
   width,
+  AUTH_CARD_WIDTH,
   BAR_HEIGHT,
   COURSE_CARD_HEIGHT,
   COURSE_IMAGE_HEIGHT,

@@ -14,3 +14,4 @@ web-build/
 
 
 app/api/keys.js
+app/firebase/keys.js

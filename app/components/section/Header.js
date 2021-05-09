@@ -9,7 +9,7 @@ import Text from '../styles/Text';
 
 const { SECTION_IMAGE_HEIGHT } = calendar;
 
-const HeaderCard = ({ title, subTitle, caption, imageUrl, logoUrl }) => {
+const Header = ({ title, subTitle, caption, imageUrl, logoUrl }) => {
   const navigation = useNavigation();
 
   return (
@@ -66,4 +66,4 @@ const Caption = styled(Text)`
   bottom: 20px;
 `;
 
-export default HeaderCard;
+export default Header;

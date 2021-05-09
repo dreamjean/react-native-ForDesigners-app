@@ -1,14 +1,22 @@
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
 import { colors } from '../config';
 import Image from './styles/Image';
 
-const TextInput = forwardRef(({ icon, error, touched, ...rest }, ref) => {
+const TextInput = forwardRef(({ icon, image, error, touched, ...rest }, ref) => {
   return (
     <Container {...{ error, touched }}>
       <IconBox>
-        <Image icon resizeMode="contain" source={icon} />
+        {icon && (
+          <MaterialCommunityIcons
+            name={icon}
+            size={24}
+            color={!touched ? colors.grey2 : error ? colors.danger : colors.blue2}
+          />
+        )}
+        {image && <Image icon resizeMode="contain" source={image} />}
       </IconBox>
       <Input
         {...{ ref }}

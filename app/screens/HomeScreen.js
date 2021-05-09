@@ -1,46 +1,24 @@
 import { useQuery } from '@apollo/client';
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { userClient } from '../api/user';
-import { Avatar, CourseCard, LogoCard, SectionCard } from '../components';
+import AuthContext from '../auth/context';
+import { ActivityIndicator, Avatar, CourseCard, LogoCard, SectionCard } from '../components';
 import Text from '../components/styles/Text';
 import { courses, logos } from '../data';
 import GET_CARDS_ITEMS from '../query/sectionCards';
 
 const HomeScreen = ({ navigation }) => {
-  const [user, setUser] = useState({ email: '', name: '', photo: null, position: '' });
+  const { user } = useContext(AuthContext);
   const { loading, error, data } = useQuery(GET_CARDS_ITEMS);
   const sectionCards = data?.cardsCollection?.items;
 
-  const restoreUser = async () => {
-    try {
-      await userClient
-        .get()
-        .then((response) => response.data[0])
-        .then((result) => {
-          setUser(result);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    restoreUser();
-  }, [user]);
-
-  if (loading)
-    return (
-      <Text body2 dark>
-        Loading...
-      </Text>
-    );
+  if (loading) return <ActivityIndicator visible={loading} />;
   if (error)
     return (
       <Text body2 dark>
-        Error...
+        {Error}
       </Text>
     );
 

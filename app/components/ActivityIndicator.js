@@ -7,11 +7,7 @@ const ActivityIndicator = ({ visible = false }) => {
 
   return (
     <Container>
-      <LottieView
-        autoPlay
-        loop
-        source={require('../assets/animations/lottie-loading-fluid.json.json')}
-      />
+      <LottieView autoPlay loop source={require('../assets/animations/lottie-glow-loading.json')} />
     </Container>
   );
 };

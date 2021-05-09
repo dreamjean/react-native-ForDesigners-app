@@ -11,7 +11,8 @@ const Button = ({
   color = colors.white,
   title,
   margin,
-  width = 295,
+  width = '100%',
+  upper = false,
   onPress,
 }) => {
   return (
@@ -29,7 +30,7 @@ const Button = ({
       })}
     >
       <Container {...{ bgColor, borderColor, width }}>
-        <Text button {...{ color }}>
+        <Text button1 {...{ color, upper }}>
           {title}
         </Text>
       </Container>

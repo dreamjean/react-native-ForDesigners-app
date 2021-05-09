@@ -1,33 +1,74 @@
 import { ApolloProvider } from '@apollo/client';
 import { NavigationContainer } from '@react-navigation/native';
+import { decode, encode } from 'base-64';
 import AppLoading from 'expo-app-loading';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { LogBox, Platform } from 'react-native';
 
 import { client as ApolloClient } from './app/api/client';
+import AuthContext from './app/auth/context';
 import { Theme } from './app/components';
+import { db, firebase } from './app/firebase';
 import useLoadAssets from './app/hooks/useLoadAssets';
-import { AuthNavigator, navigationTheme } from './app/navigation';
+import { AppNavigator, AuthNavigator, navigationTheme } from './app/navigation';
+
+if (!global.btoa) global.btoa = encode;
+
+if (!global.atob) global.atob = decode;
+
+if (Platform.OS === 'android') LogBox.ignoreLogs(['Setting a timer for a long period of time']);
 
 export default function App() {
   const { assetsLoaded, setAssetsLoaded, loadAssetsAsync } = useLoadAssets();
+  const [user, setUser] = useState();
+  const [isReady, setIsReady] = useState(false);
 
-  if (!assetsLoaded)
+  useEffect(() => {
+    restoreUser();
+  }, [isReady]);
+
+  const restoreUser = async () => {
+    const { currentUser } = firebase.auth();
+
+    if (currentUser !== null) {
+      try {
+        await db
+          .collection('users')
+          .doc(currentUser.uid)
+          .get()
+          .then((snapshot) => {
+            if (snapshot.exitst) setUser(snapshot.data());
+            console.log(user);
+
+            setIsReady(true);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  if (!assetsLoaded || !isReady)
     return (
       <AppLoading
-        startAsync={loadAssetsAsync}
-        onFinish={() => setAssetsLoaded(true)}
+        startAsync={loadAssetsAsync || restoreUser}
+        onFinish={() => {
+          setAssetsLoaded(true);
+          setIsReady(true);
+        }}
         onError={console.warn}
       />
     );
 
   return (
-    <ApolloProvider client={ApolloClient}>
-      <Theme>
-        <NavigationContainer theme={navigationTheme}>
-          <AuthNavigator />
-          {/* <AppNavigator /> */}
-        </NavigationContainer>
-      </Theme>
-    </ApolloProvider>
+    <AuthContext.Provider value={{ user, setUser }}>
+      <ApolloProvider client={ApolloClient}>
+        <Theme>
+          <NavigationContainer theme={navigationTheme}>
+            {user ? <AppNavigator /> : <AuthNavigator />}
+          </NavigationContainer>
+        </Theme>
+      </ApolloProvider>
+    </AuthContext.Provider>
   );
 }

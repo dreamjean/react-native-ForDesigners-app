@@ -47,6 +47,7 @@ export default {
     m1: 14,
     m2: 24,
     l: 35,
+    l2: 40,
     xxl: 999,
   },
 

@@ -3,7 +3,7 @@ import { ScrollView, StatusBar } from 'react-native';
 import Markdown from 'react-native-showdown';
 import styled from 'styled-components';
 
-import { HeaderCard } from '../components';
+import { Header } from '../components';
 
 const SectionScreen = ({ route }) => {
   const section = route?.params;
@@ -11,7 +11,7 @@ const SectionScreen = ({ route }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Container>
-        <HeaderCard
+        <Header
           title={section.title}
           subTitle={section.subTitle}
           caption={section.caption}

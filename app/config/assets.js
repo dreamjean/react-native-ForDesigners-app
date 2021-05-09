@@ -31,8 +31,10 @@ export const images = [
   require('../assets/logo-xcode.png'),
   require('../assets/logo-xd.png'),
   require('../assets/logo-dc.png'),
-  // auth background 28
+  // auth  29~31
   require('../assets/geometry.jpg'),
+  require('../assets/icon-email.png'),
+  require('../assets/icon-password.png'),
 ];
 
 export const fonts = {
