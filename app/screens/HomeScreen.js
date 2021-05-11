@@ -1,18 +1,37 @@
 import { useQuery } from '@apollo/client';
 import { StatusBar } from 'expo-status-bar';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 
 import AuthContext from '../auth/context';
-import { ActivityIndicator, Avatar, CourseCard, LogoCard, SectionCard } from '../components';
+import { ActivityIndicator, Avatar, Courses, LogoCard, SectionCard } from '../components';
 import Text from '../components/styles/Text';
-import { courses, logos } from '../data';
+import { logos } from '../data';
+import { auth, db } from '../firebase';
 import GET_CARDS_ITEMS from '../query/sectionCards';
 
 const HomeScreen = ({ navigation }) => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const { loading, error, data } = useQuery(GET_CARDS_ITEMS);
   const sectionCards = data?.cardsCollection?.items;
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const fetchUser = async () => {
+    const { uid } = auth.currentUser;
+
+    await db
+      .collection('users')
+      .doc(uid)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists) {
+          setUser(snapshot.data());
+        }
+      });
+  };
 
   if (loading) return <ActivityIndicator visible={loading} />;
   if (error)
@@ -63,20 +82,7 @@ const HomeScreen = ({ navigation }) => {
           </Listing>
         </Wrapper>
         <SubTitle body1>Popular Courses</SubTitle>
-        <CoursesBox>
-          {courses.map((course, index) => (
-            <CourseCard
-              key={index}
-              author={course.author}
-              avatar={course.avatar}
-              caption={course.caption}
-              image={course.image}
-              logo={course.logo}
-              subTitle={course.subtitle}
-              title={course.title}
-            />
-          ))}
-        </CoursesBox>
+        <Courses />
       </ScrollView>
       <StatusBar style="dark" />
     </Container>
@@ -102,16 +108,5 @@ const SubTitle = styled(Text)`
 const Listing = styled.ScrollView``;
 
 const Wrapper = styled.View``;
-
-const CoursesBox = styled.View`
-  flex: 1;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  ${({ theme: { space } }) => ({
-    paddingLeft: space.s3,
-    paddingBottom: space.m3,
-  })}
-`;
 
 export default HomeScreen;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Content, IconButton, ListItem } from '../components';
 import Text from '../components/styles/Text';
 import { calendar, colors } from '../config';
-import { settingItems } from '../data';
+import { settings } from '../data';
 
 const { width } = calendar;
 let cardWidth = width > 500 ? 500 : width;
@@ -30,7 +30,7 @@ const SettingsScreen = ({ navigation }) => {
         />
       </Content>
       <Wrapper>
-        {settingItems.map((item) => (
+        {settings.map((item) => (
           <ListItem key={item.title} title={item.title} icon={item.icon} subTitle={item.text} />
         ))}
       </Wrapper>

@@ -1,5 +1,16 @@
 import styled, { css } from 'styled-components';
 
+const avatarStyle = css`
+  width: 22px;
+  height: 22px;
+  border-radius: 11px;
+
+  ${({ theme: { colors, space } }) => ({
+    backgroundColor: colors.white,
+    marginRight: space.s2,
+  })}
+`;
+
 const avatar1Style = css`
   width: 32px;
   height: 32px;
@@ -45,6 +56,7 @@ const Image = styled.Image`
   height: 100%;
   width: 100%;
 
+  ${({ avatar }) => avatar && avatarStyle}
   ${({ avatar1 }) => avatar1 && avatar1Style}
   ${({ avatar2 }) => avatar2 && avatar2Style}
   ${({ logo }) => logo && logoStyle}

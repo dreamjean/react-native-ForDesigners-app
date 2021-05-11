@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { Header } from '../components';
 
-const SectionScreen = ({ route }) => {
+const SectionScreen = ({ route, navigation }) => {
   const section = route?.params;
 
   return (
@@ -17,6 +17,7 @@ const SectionScreen = ({ route }) => {
           caption={section.caption}
           imageUrl={section.image.url}
           logoUrl={section.logo.url}
+          onPress={() => navigation.navigate('Video', { section })}
         />
 
         <Content>

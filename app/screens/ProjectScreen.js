@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { PanGestureHandler } from 'react-native-gesture-handler';
 import Animated, {
   Easing,
@@ -10,6 +9,8 @@ import Animated, {
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
+  withDecay,
+  withDelay,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
@@ -49,7 +50,7 @@ const ProjectScreen = () => {
 
     translateX.value = 0;
     translateY.value = 0;
-    scale.value = withTiming(1, timingConfig);
+    scale.value = withDelay(100, withTiming(1, timingConfig));
 
     secondScale.value = 0.9;
     secondTransY.value = 38;
@@ -103,10 +104,18 @@ const ProjectScreen = () => {
         thirdScale.value = withSpring(0.8);
         thirdTransY.value = withSpring(0);
       } else {
-        translateY.value = withSpring(1000, { velocity: velocityY }, runOnJS(resetNextCard)());
-        translateX.value = withSpring(0, { velocity: velocityX });
-        scale.value = 0;
-        imgOpacity.value = 0;
+        translateX.value = withSpring(0, {
+          velocity: velocityX,
+        });
+        translateY.value = withDecay(
+          {
+            velocity: velocityY,
+            clamp: [200, 1000],
+          },
+          runOnJS(resetNextCard)(),
+        );
+        scale.value = withTiming(0, { duration: 300 });
+        imgOpacity.value = withTiming(0, { duration: 300 });
       }
       imgOpacity.value = withTiming(1, timingConfig);
     },
@@ -178,7 +187,7 @@ const ProjectScreen = () => {
           </Animated.View>
         </Animated.View>
       </PanGestureHandler>
-      <StatusBar style="dark" />
+      <StatusBar barStyle="dark-content" />
     </Container>
   );
 };

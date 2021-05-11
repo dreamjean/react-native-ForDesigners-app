@@ -55,6 +55,7 @@ const ProjectCard = ({ image, title, author, text, setCardOpened }) => {
       width: cardWidth.value,
       height: cardHeight.value,
       borderRadius: borderRadius.value,
+      elevation: 15,
     };
   });
 

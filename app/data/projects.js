@@ -13,7 +13,7 @@ export default [
     image: images[6],
     author: 'CHad Goodman',
     text:
-      'Design+Code was the first resource I used when breaking into software. I went from knowig nothing about design or code to building a production ready app from scratch.Design+Code was the first resource I used when breaking into software. I went from knowig nothing about design or code to building a production ready app from scratch.Design+Code was the first resource I used when breaking into software. I went from knowig nothing about design or code to building a production ready app from scratch.',
+      'Design+Code was the first resource I used when breaking into software. I went from knowig nothing about design or code to building a production ready app from scratch.',
   },
   {
     title: 'Nikhiljay',

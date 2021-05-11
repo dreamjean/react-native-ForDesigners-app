@@ -16,6 +16,7 @@ const fonts = {
 export default {
   colors,
   size: {
+    s: 10,
     s1: 13,
     s2: 14,
     m1: 15,
@@ -24,6 +25,7 @@ export default {
     l2: 18,
     title1: 20,
     title2: 22,
+    title3: 26,
     heading: 50,
   },
   space: {
@@ -48,7 +50,7 @@ export default {
     m2: 24,
     l: 35,
     l2: 40,
-    xxl: 999,
+    xl: 50,
   },
 
   getFont,

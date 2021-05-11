@@ -8,7 +8,7 @@ import { LogBox, Platform } from 'react-native';
 import { client as ApolloClient } from './app/api/client';
 import AuthContext from './app/auth/context';
 import { Theme } from './app/components';
-import { db, firebase } from './app/firebase';
+import { auth } from './app/firebase';
 import useLoadAssets from './app/hooks/useLoadAssets';
 import { AppNavigator, AuthNavigator, navigationTheme } from './app/navigation';
 
@@ -21,41 +21,24 @@ if (Platform.OS === 'android') LogBox.ignoreLogs(['Setting a timer for a long pe
 export default function App() {
   const { assetsLoaded, setAssetsLoaded, loadAssetsAsync } = useLoadAssets();
   const [user, setUser] = useState();
-  const [isReady, setIsReady] = useState(false);
+  const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
-    restoreUser();
-  }, [isReady]);
+    const subscriber = auth.onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
+  }, []);
 
-  const restoreUser = async () => {
-    const { currentUser } = firebase.auth();
+  const onAuthStateChanged = (user) => {
+    if (user) setUser(user);
 
-    if (currentUser !== null) {
-      try {
-        await db
-          .collection('users')
-          .doc(currentUser.uid)
-          .get()
-          .then((snapshot) => {
-            if (snapshot.exitst) setUser(snapshot.data());
-            console.log(user);
-
-            setIsReady(true);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    if (initializing) setInitializing(false);
   };
 
-  if (!assetsLoaded || !isReady)
+  if (!assetsLoaded || initializing)
     return (
       <AppLoading
-        startAsync={loadAssetsAsync || restoreUser}
-        onFinish={() => {
-          setAssetsLoaded(true);
-          setIsReady(true);
-        }}
+        startAsync={loadAssetsAsync}
+        onFinish={() => setAssetsLoaded(true)}
         onError={console.warn}
       />
     );

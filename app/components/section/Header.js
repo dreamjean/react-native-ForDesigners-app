@@ -9,7 +9,7 @@ import Text from '../styles/Text';
 
 const { SECTION_IMAGE_HEIGHT } = calendar;
 
-const Header = ({ title, subTitle, caption, imageUrl, logoUrl }) => {
+const Header = ({ title, subTitle, caption, imageUrl, logoUrl, onPress }) => {
   const navigation = useNavigation();
 
   return (
@@ -35,6 +35,14 @@ const Header = ({ title, subTitle, caption, imageUrl, logoUrl }) => {
         color={colors.darkBlue}
         size={30}
         onPress={() => navigation.goBack()}
+      />
+      <IconButton
+        iconName="play"
+        bgColor={colors.lightGrey2}
+        color={colors.lightGrey}
+        size={100}
+        onPress={onPress}
+        style={{ alignSelf: 'center', top: 25 }}
       />
     </ImageCover>
   );

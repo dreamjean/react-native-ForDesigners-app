@@ -1,7 +1,7 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 
-import { NotificationsScreen, SectionScreen, SettingsScreen } from '../screens';
+import { NotificationsScreen, SectionScreen, SettingsScreen, VideoScreen } from '../screens';
 import MainNavigator from './MainNavigator';
 
 const Stack = createStackNavigator();
@@ -27,11 +27,18 @@ const AppNavigator = () => (
     <Stack.Screen
       name="Notifications"
       component={NotificationsScreen}
-      options={{ ...TransitionPresets.ModalPresentationIOS }}
+      options={{
+        ...TransitionPresets.ModalSlideFromBottomIOS,
+      }}
     />
     <Stack.Screen
       name="Section"
       component={SectionScreen}
+      options={{ ...TransitionPresets.ModalSlideFromBottomIOS }}
+    />
+    <Stack.Screen
+      name="Video"
+      component={VideoScreen}
       options={{ ...TransitionPresets.ModalSlideFromBottomIOS }}
     />
   </Stack.Navigator>

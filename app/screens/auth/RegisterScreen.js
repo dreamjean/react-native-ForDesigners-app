@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Keyboard } from 'react-native';
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
 import * as Yup from 'yup';
 
 import { Container, TextLinking, UploadModal } from '../../components';
@@ -37,11 +36,11 @@ const RegisterScreen = ({ navigation }) => {
 
   const focusNextField = (nextField) => inputs[nextField].focus();
 
-  const uploadImage = async (image, uid) => {
+  const uploadImage = async (uid, image) => {
     if (!image) return null;
 
     try {
-      const childPath = `users/${uid}/${uuidv4()}`;
+      const childPath = `users/${uid}/${Date.now()}`;
       const response = await fetch(image);
       const blob = await response.blob();
 
@@ -72,27 +71,26 @@ const RegisterScreen = ({ navigation }) => {
     Keyboard.dismiss();
     setUploadVisible(true);
     setUploadState('loading');
-    setImageUrl(null);
 
     try {
-      await auth
-        .createUserWithEmailAndPassword(userInfo.email, userInfo.password)
-        .then((userCredential) => {
-          const { user } = userCredential;
+      await auth.createUserWithEmailAndPassword(userInfo.email, userInfo.password);
 
-          uploadImage(userInfo.photo, user.uid);
+      const { uid } = auth.currentUser;
 
-          db.collection('users')
-            .doc(user.uid)
-            .set({
-              uid: user.uid,
-              photo: imageUrl,
-              name: userInfo.name,
-              email: userInfo.email,
-            })
-            .then(() => {
-              setUploadVisible(false);
-            });
+      uploadImage(uid, userInfo.photo);
+
+      await db
+        .collection('users')
+        .doc(uid)
+        .set({
+          uid,
+          photo: imageUrl,
+          name: userInfo.name,
+          email: userInfo.email,
+        })
+        .then(() => {
+          setUploadVisible(false);
+          setImageUrl(null);
         });
     } catch (error) {
       setError(error.message);
