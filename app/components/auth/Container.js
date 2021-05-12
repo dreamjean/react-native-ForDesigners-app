@@ -39,11 +39,11 @@ const Container = ({ children }) => {
 
   return (
     <ImageBackground source={images[29]}>
-      <BlurView intensity={80} style={StyleSheet.absoluteFillObject} />
+      <BlurView intensity={80} style={{ flex: 1 }} />
       <Cover style={StyleSheet.absoluteFill}>
         <KeyboardAwareScrollView
           contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}
-          extraScrollHeight={60}
+          extraScrollHeight={120}
           enableOnAndroid
           enableAutomaticScroll
           keyboardShouldPersistTaps="always"

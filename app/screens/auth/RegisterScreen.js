@@ -24,11 +24,10 @@ const validationSchema = Yup.object().shape({
     .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
     .matches(/\d/, 'Password must have a number')
     .label('Password'),
-  photo: Yup.string().nullable().label('Photo'),
+  photo: Yup.string().required().nullable().label('Photo'),
 });
 
 const RegisterScreen = ({ navigation }) => {
-  const [imageUrl, setImageUrl] = useState(null);
   const [error, setError] = useState();
   const [uploadVisible, setUploadVisible] = useState(false);
   const [uploadState, setUploadState] = useState('uploading');
@@ -36,9 +35,7 @@ const RegisterScreen = ({ navigation }) => {
 
   const focusNextField = (nextField) => inputs[nextField].focus();
 
-  const uploadImage = async (uid, image) => {
-    if (!image) return null;
-
+  const uploadImage = async (uid, name, email, image) => {
     try {
       const childPath = `users/${uid}/${Date.now()}`;
       const response = await fetch(image);
@@ -57,7 +54,12 @@ const RegisterScreen = ({ navigation }) => {
 
       const taskCompleted = () => {
         task.snapshot.ref.getDownloadURL().then((url) => {
-          setImageUrl(url);
+          db.collection('users').doc(uid).set({
+            uid,
+            photo: url,
+            name,
+            email,
+          });
         });
       };
 
@@ -70,28 +72,17 @@ const RegisterScreen = ({ navigation }) => {
   const handleSubmit = async (userInfo) => {
     Keyboard.dismiss();
     setUploadVisible(true);
-    setUploadState('loading');
+
+    const { name, email, password, photo } = userInfo;
 
     try {
-      await auth.createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+      await auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
+        const { uid } = userCredential.user;
 
-      const { uid } = auth.currentUser;
+        uploadImage(uid, name, email, photo);
 
-      uploadImage(uid, userInfo.photo);
-
-      await db
-        .collection('users')
-        .doc(uid)
-        .set({
-          uid,
-          photo: imageUrl,
-          name: userInfo.name,
-          email: userInfo.email,
-        })
-        .then(() => {
-          setUploadVisible(false);
-          setImageUrl(null);
-        });
+        setUploadVisible(false);
+      });
     } catch (error) {
       setError(error.message);
       setUploadVisible(false);
@@ -106,7 +97,7 @@ const RegisterScreen = ({ navigation }) => {
         uploadState={uploadState}
         onDone={() => setUploadVisible(false)}
       />
-      <Title subTitle1>Create your account.</Title>
+      <Title title1>Create your account.</Title>
       <Wrapper>
         <Form
           initialValues={{

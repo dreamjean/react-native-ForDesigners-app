@@ -1,37 +1,22 @@
 import { useQuery } from '@apollo/client';
 import { StatusBar } from 'expo-status-bar';
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-import AuthContext from '../auth/context';
+import useAuth from '../auth/useAuth';
 import { ActivityIndicator, Avatar, Courses, LogoCard, SectionCard } from '../components';
 import Text from '../components/styles/Text';
 import { logos } from '../data';
-import { auth, db } from '../firebase';
 import GET_CARDS_ITEMS from '../query/sectionCards';
 
 const HomeScreen = ({ navigation }) => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, getUser } = useAuth();
   const { loading, error, data } = useQuery(GET_CARDS_ITEMS);
   const sectionCards = data?.cardsCollection?.items;
 
   useEffect(() => {
-    fetchUser();
-  }, []);
-
-  const fetchUser = async () => {
-    const { uid } = auth.currentUser;
-
-    await db
-      .collection('users')
-      .doc(uid)
-      .get()
-      .then((snapshot) => {
-        if (snapshot.exists) {
-          setUser(snapshot.data());
-        }
-      });
-  };
+    getUser();
+  }, [user]);
 
   if (loading) return <ActivityIndicator visible={loading} />;
   if (error)

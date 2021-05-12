@@ -21,7 +21,6 @@ if (Platform.OS === 'android') LogBox.ignoreLogs(['Setting a timer for a long pe
 export default function App() {
   const { assetsLoaded, setAssetsLoaded, loadAssetsAsync } = useLoadAssets();
   const [user, setUser] = useState();
-  const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
     const subscriber = auth.onAuthStateChanged(onAuthStateChanged);
@@ -30,11 +29,9 @@ export default function App() {
 
   const onAuthStateChanged = (user) => {
     if (user) setUser(user);
-
-    if (initializing) setInitializing(false);
   };
 
-  if (!assetsLoaded || initializing)
+  if (!assetsLoaded)
     return (
       <AppLoading
         startAsync={loadAssetsAsync}

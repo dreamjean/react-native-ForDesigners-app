@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useSharedValue, withDelay, withSpring, withTiming } from 'react-native-reanimated';
 import styled from 'styled-components';
 
-import { IconButton, ListItem } from '../components';
+import { IconButton, Notification } from '../components';
 import Text from '../components/styles/Text';
 import { calendar, colors } from '../config';
 import { notifications } from '../data';
@@ -16,6 +16,7 @@ if (width > 500) {
 }
 
 const NotificationsScreen = ({ navigation }) => {
+  const [items, setItems] = useState(notifications);
   const translateY = useSharedValue(30);
   const opacity = useSharedValue(0);
 
@@ -29,6 +30,10 @@ const NotificationsScreen = ({ navigation }) => {
       return () => (isActive = false);
     }, [translateY, opacity]),
   );
+
+  const handleDelete = (id) => {
+    setItems(items.filter((item) => item.id !== id));
+  };
 
   return (
     <Container>
@@ -53,14 +58,11 @@ const NotificationsScreen = ({ navigation }) => {
             New
           </Text>
         </Wrapper>
-        {notifications.map((item, index) => (
-          <ListItem
-            key={index}
-            title={item.title}
-            logo={item.logo}
-            text={item.text}
-            date={item.date}
-            {...{ translateY, opacity }}
+        {items.map((item) => (
+          <Notification
+            key={item.id}
+            {...{ item, translateY, opacity }}
+            onRemove={() => handleDelete(item.id)}
           />
         ))}
       </ScrollView>

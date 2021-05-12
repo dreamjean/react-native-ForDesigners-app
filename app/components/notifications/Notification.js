@@ -6,7 +6,7 @@ import Image from '../styles/Image';
 import Text from '../styles/Text';
 import SwipeableRow from './SwipeableRow';
 
-const ListItem = ({ title, logo, date, text, opacity, translateY }) => {
+const Notification = ({ item, opacity, translateY, onRemove }) => {
   const stylez = useAnimatedStyle(() => {
     return {
       width: '100%',
@@ -16,48 +16,35 @@ const ListItem = ({ title, logo, date, text, opacity, translateY }) => {
   });
 
   return (
-    <AnimatedItem style={stylez}>
-      <SwipeableRow>
+    <Animated.View style={stylez}>
+      <SwipeableRow {...{ onRemove }}>
         <Container>
           <Header>
             <TitleBox>
-              <Image logo source={{ uri: logo }} resizeMode="contain" />
+              <Image logo source={{ uri: item.logo }} resizeMode="contain" />
               <Text subTitle1 dark>
-                {title}
+                {item.title}
               </Text>
             </TitleBox>
             <DateBox>
-              <Text tiny>{date}</Text>
+              <Text tiny>{item.date}</Text>
             </DateBox>
           </Header>
-          <Text body1 dark marginTop={20}>
-            {text}
+          <Text body1 dark marginTop={12}>
+            {item.text}
           </Text>
         </Container>
       </SwipeableRow>
-    </AnimatedItem>
+    </Animated.View>
   );
 };
 
-const Item = styled.View`
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-
-  ${({ theme: { colors, space, radii } }) => ({
-    backgroundColor: colors.white,
-    borderRadius: radii.m1,
-    marginVertical: space.m1,
-  })}
-`;
-
-const AnimatedItem = Animated.createAnimatedComponent(Item);
-
 const Container = styled.View`
-  width: 100%;
-
   ${({ theme: { colors, space, radii } }) => ({
     backgroundColor: colors.white,
     borderRadius: radii.m1,
     padding: space.l1,
+    marginTop: space.l1,
   })}
 `;
 
@@ -79,8 +66,9 @@ const DateBox = styled.View`
   ${({ theme: { colors, space, radii } }) => ({
     backgroundColor: colors.blue,
     borderRadius: radii.m1,
-    padding: space.s2,
+    paddingVertical: space.s1,
+    paddingHorizontal: space.s2,
   })}
 `;
 
-export default ListItem;
+export default Notification;

@@ -18,7 +18,7 @@ export const images = [
   require('../assets/background15.jpg'),
   require('../assets/background16.jpg'),
   // avatar 17
-  require('../assets/avatar.jpeg'),
+  require('../assets/avatar.jpg'),
   //logo 18~28
   require('../assets/logo-framerx.png'),
   require('../assets/logo-figma.png'),

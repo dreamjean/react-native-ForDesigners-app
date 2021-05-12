@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Content, IconButton, ListItem } from '../components';
+import useAuth from '../auth/useAuth';
+import { Content, IconButton, SettingsItem } from '../components';
 import Text from '../components/styles/Text';
 import { calendar, colors } from '../config';
 import { settings } from '../data';
@@ -10,15 +11,21 @@ const { width } = calendar;
 let cardWidth = width > 500 ? 500 : width;
 
 const SettingsScreen = ({ navigation }) => {
+  const { user, logout } = useAuth();
+
+  const handlePress = (title) => {
+    if (title === 'Log out') return logout();
+  };
+
   return (
     <Container>
       <Content>
         <TitleBox>
           <Text title2 white>
-            Rokia
+            {user.name}
           </Text>
           <Text white marginTop={8} opacity={0.65}>
-            rokia@demo.com
+            {user.email}
           </Text>
         </TitleBox>
         <IconButton
@@ -31,7 +38,13 @@ const SettingsScreen = ({ navigation }) => {
       </Content>
       <Wrapper>
         {settings.map((item) => (
-          <ListItem key={item.title} title={item.title} icon={item.icon} subTitle={item.text} />
+          <SettingsItem
+            key={item.title}
+            title={item.title}
+            icon={item.icon}
+            text={item.text}
+            onPress={() => handlePress(item.title)}
+          />
         ))}
       </Wrapper>
     </Container>

@@ -13,7 +13,7 @@ import { courseSections } from '../data';
 const CoursesScreen = () => {
   return (
     <Container>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <ImageCover source={images[12]}>
           <LinearGradient
             colors={[colors.transparent, colors.light]}
