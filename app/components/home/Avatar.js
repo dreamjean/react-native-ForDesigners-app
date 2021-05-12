@@ -25,7 +25,13 @@ const Avatar = ({ avatar, name, onAvatarPress, onIconPress }) => {
           {name}
         </Text>
       </TitleBar>
-      <SvgIconButton SvgName={Notifications} width={24} height={24} onPress={onIconPress} />
+      <SvgIconButton
+        SvgName={Notifications}
+        width={24}
+        height={24}
+        number={4}
+        onPress={onIconPress}
+      />
     </Container>
   );
 };
