@@ -4,9 +4,9 @@ module.exports = function (api) {
     presets: [
       [
         "babel-preset-expo",
-        // {
-        //   jsxRuntime: "automatic",
-        // },
+        {
+          jsxRuntime: "automatic",
+        },
       ],
     ],
     plugins: [

@@ -16,3 +16,5 @@ web-build/
 # keys
 app/api/keys.js
 app/firebase/keys.js
+
+.eslintcache
