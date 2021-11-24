@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 import useAuth from "../auth/useAuth";

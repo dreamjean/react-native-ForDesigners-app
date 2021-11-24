@@ -2,7 +2,6 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import React from "react";
 
 import {
   NotificationsScreen,

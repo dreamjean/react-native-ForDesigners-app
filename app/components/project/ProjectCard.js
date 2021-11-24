@@ -1,6 +1,5 @@
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
 import { Pressable, StatusBar } from "react-native";
 import Animated, {
   useAnimatedStyle,

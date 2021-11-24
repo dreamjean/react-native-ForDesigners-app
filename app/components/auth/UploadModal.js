@@ -1,5 +1,4 @@
 import LottieView from "lottie-react-native";
-import React from "react";
 import styled from "styled-components";
 
 const UploadModal = ({ visible = false, onDone, uploadState }) => {

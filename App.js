@@ -2,7 +2,7 @@ import { ApolloProvider } from "@apollo/client";
 import { NavigationContainer } from "@react-navigation/native";
 import { decode, encode } from "base-64";
 import AppLoading from "expo-app-loading";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { LogBox, Platform } from "react-native";
 
 import { client as ApolloClient } from "./app/api/client";

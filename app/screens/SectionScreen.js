@@ -1,4 +1,3 @@
-import React from "react";
 import { ScrollView, StatusBar } from "react-native";
 import Markdown from "react-native-showdown";
 import styled from "styled-components";

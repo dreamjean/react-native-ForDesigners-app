@@ -1,6 +1,6 @@
 import { useIsFocused } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import Animated, {

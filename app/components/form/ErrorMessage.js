@@ -1,5 +1,3 @@
-import React from "react";
-
 import Text from "../styles/Text";
 
 const ErrorMessage = ({ error, visible }) => {

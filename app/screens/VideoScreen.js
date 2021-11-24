@@ -1,7 +1,6 @@
 import { Entypo } from "@expo/vector-icons";
 import { Video } from "expo-av";
 import VideoPlayer from "expo-video-player";
-import React from "react";
 import styled from "styled-components";
 
 import { IconButton } from "../components";
