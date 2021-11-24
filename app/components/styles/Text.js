@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 const title1Style = css`
   ${({ theme: { getFont, size } }) => ({
@@ -110,7 +110,7 @@ const tinyStyle = css`
 const Text = styled.Text`
   ${({ white, dark, upper, marginTop, opacity, theme: { colors } }) => ({
     color: white ? colors.white : dark ? colors.darkBlue : colors.grey,
-    textTransform: upper ? 'uppercase' : 'none',
+    textTransform: upper ? "uppercase" : "none",
     opacity,
     marginTop,
   })}

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import Text from '../styles/Text';
+import Text from "../styles/Text";
 
 const ErrorMessage = ({ error, visible }) => {
   if (!error || !visible) return null;

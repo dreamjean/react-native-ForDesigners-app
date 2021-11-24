@@ -1,13 +1,13 @@
-import { useNavigation } from '@react-navigation/native';
-import React from 'react';
-import styled from 'styled-components';
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import styled from "styled-components";
 
-import { calendar, colors } from '../../config';
-import IconButton from '../IconButton';
-import Image from '../styles/Image';
-import Text from '../styles/Text';
+import { colors, constants } from "../../config";
+import IconButton from "../IconButton";
+import Image from "../styles/Image";
+import Text from "../styles/Text";
 
-const { SECTION_IMAGE_HEIGHT } = calendar;
+const { SECTION_IMAGE_HEIGHT } = constants;
 
 const Header = ({ title, subTitle, caption, imageUrl, logoUrl, onPress }) => {
   const navigation = useNavigation();
@@ -29,7 +29,7 @@ const Header = ({ title, subTitle, caption, imageUrl, logoUrl, onPress }) => {
         {subTitle}
       </Caption>
       <IconButton
-        style={{ position: 'absolute', top: 28, right: 20 }}
+        style={{ position: "absolute", top: 28, right: 20 }}
         iconName="close"
         bgColor={colors.white}
         color={colors.darkBlue}
@@ -42,7 +42,7 @@ const Header = ({ title, subTitle, caption, imageUrl, logoUrl, onPress }) => {
         color={colors.lightGrey}
         size={100}
         onPress={onPress}
-        style={{ alignSelf: 'center', top: 25 }}
+        style={{ alignSelf: "center", top: 25 }}
       />
     </ImageCover>
   );

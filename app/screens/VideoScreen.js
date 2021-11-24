@@ -1,12 +1,12 @@
-import { Entypo } from '@expo/vector-icons';
-import { Video } from 'expo-av';
-import VideoPlayer from 'expo-video-player';
-import React from 'react';
-import styled from 'styled-components';
+import { Entypo } from "@expo/vector-icons";
+import { Video } from "expo-av";
+import VideoPlayer from "expo-video-player";
+import React from "react";
+import styled from "styled-components";
 
-import { IconButton } from '../components';
-import Text from '../components/styles/Text';
-import { colors } from '../config';
+import { IconButton } from "../components";
+import Text from "../components/styles/Text";
+import { colors } from "../config";
 
 const VideoScreen = ({ navigation, route }) => {
   return (
@@ -16,8 +16,7 @@ const VideoScreen = ({ navigation, route }) => {
           shouldPlay: true,
           resizeMode: Video.RESIZE_MODE_CONTAIN,
           source: {
-            uri:
-              'https://player.vimeo.com/external/281472837.hd.mp4?s=c78b611b5055e373c69b6dd7674e2051128bc7b8&profile_id=175',
+            uri: "https://player.vimeo.com/external/281472837.hd.mp4?s=c78b611b5055e373c69b6dd7674e2051128bc7b8&profile_id=175",
           },
         }}
         inFullscreen={true}

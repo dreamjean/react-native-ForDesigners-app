@@ -1,8 +1,16 @@
-import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
-import React from 'react';
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
+import React from "react";
 
-import { NotificationsScreen, SectionScreen, SettingsScreen, VideoScreen } from '../screens';
-import MainNavigator from './MainNavigator';
+import {
+  NotificationsScreen,
+  SectionScreen,
+  SettingsScreen,
+  VideoScreen,
+} from "../screens";
+import MainNavigator from "./MainNavigator";
 
 const Stack = createStackNavigator();
 
@@ -13,7 +21,9 @@ const AppNavigator = () => (
       headerShown: false,
       cardOverlayEnabled: true,
       headerStatusBarHeight:
-        navigation.dangerouslyGetState().routes.findIndex((r) => r.key === route.key) > 0
+        navigation
+          .dangerouslyGetState()
+          .routes.findIndex((r) => r.key === route.key) > 0
           ? 0
           : undefined,
     })}

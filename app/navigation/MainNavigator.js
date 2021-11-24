@@ -1,19 +1,19 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React from 'react';
+import { Ionicons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from "react";
 
-import { CoursesScreen, HomeScreen, ProjectScreen } from '../screens';
+import { CoursesScreen, HomeScreen, ProjectScreen } from "../screens";
 
 const Tab = createBottomTabNavigator();
 
 const screenOptions = ({ route }) => ({
   tabBarIcon: ({ size, color }) => {
     let icon;
-    if (route.name === 'Home') icon = 'home';
+    if (route.name === "Home") icon = "home";
 
-    if (route.name === 'Courses') icon = 'albums';
+    if (route.name === "Courses") icon = "albums";
 
-    if (route.name === 'Project') icon = 'folder';
+    if (route.name === "Project") icon = "folder";
 
     return <Ionicons name={icon} color={color} size={size} />;
   },

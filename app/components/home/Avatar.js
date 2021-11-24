@@ -1,12 +1,12 @@
-import React from 'react';
-import { Pressable } from 'react-native';
-import styled from 'styled-components';
+import React from "react";
+import { Pressable } from "react-native";
+import styled from "styled-components";
 
-import Notifications from '../../assets/icons/icon-notifications.svg';
-import { images } from '../../config';
-import Image from '../styles/Image';
-import Text from '../styles/Text';
-import SvgIconButton from '../SvgIconButton';
+import Notifications from "../../assets/icons/icon-notifications.svg";
+import { images } from "../../config";
+import Image from "../styles/Image";
+import Text from "../styles/Text";
+import SvgIconButton from "../SvgIconButton";
 
 const Avatar = ({ avatar, name, onAvatarPress, onIconPress }) => {
   return (
@@ -17,7 +17,11 @@ const Avatar = ({ avatar, name, onAvatarPress, onIconPress }) => {
           opacity: pressed ? 0.5 : 1,
         })}
       >
-        <Image avatar2 resizeMode="cover" source={avatar ? { uri: avatar } : images[0]} />
+        <Image
+          avatar2
+          resizeMode="cover"
+          source={avatar ? { uri: avatar } : images.avatarDefault}
+        />
       </Pressable>
       <TitleBar>
         <Text body1>Welcome back,</Text>

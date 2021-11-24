@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { StatusBar, StyleSheet } from 'react-native';
-import { PanGestureHandler } from 'react-native-gesture-handler';
+import React, { useState } from "react";
+import { StatusBar, StyleSheet } from "react-native";
+import { PanGestureHandler } from "react-native-gesture-handler";
 import Animated, {
   Easing,
   Extrapolate,
@@ -13,12 +13,12 @@ import Animated, {
   withDelay,
   withSpring,
   withTiming,
-} from 'react-native-reanimated';
-import styled from 'styled-components';
+} from "react-native-reanimated";
+import styled from "styled-components";
 
-import { ProjectCard } from '../components';
-import { colors } from '../config';
-import projects from '../data/projects';
+import { ProjectCard } from "../components";
+import { colors } from "../config";
+import projects from "../data/projects";
 
 const timingConfig = {
   duration: 240,
@@ -73,14 +73,14 @@ const ProjectScreen = () => {
         translateY.value,
         [-200, 0, 200],
         [0.65, 1, 0.65],
-        Extrapolate.CLAMP,
+        Extrapolate.CLAMP
       );
 
       imgOpacity.value = interpolate(
         translateY.value,
         [-100, 0, 100],
         [0.6, 1, 0.6],
-        Extrapolate.CLAMP,
+        Extrapolate.CLAMP
       );
 
       opacity.value = withTiming(1);
@@ -112,7 +112,7 @@ const ProjectScreen = () => {
             velocity: velocityY,
             clamp: [200, 1000],
           },
-          runOnJS(resetNextCard)(),
+          runOnJS(resetNextCard)()
         );
         scale.value = withTiming(0, { duration: 300 });
         imgOpacity.value = withTiming(0, { duration: 300 });
@@ -129,7 +129,7 @@ const ProjectScreen = () => {
 
   const card1Style = useAnimatedStyle(() => {
     return {
-      position: 'absolute',
+      position: "absolute",
       opacity: imgOpacity.value,
       transform: [
         { translateX: translateX.value },
@@ -141,24 +141,33 @@ const ProjectScreen = () => {
 
   const card2Style = useAnimatedStyle(() => {
     return {
-      position: 'absolute',
+      position: "absolute",
       zIndex: -1,
-      transform: [{ translateY: secondTransY.value }, { scale: secondScale.value }],
+      transform: [
+        { translateY: secondTransY.value },
+        { scale: secondScale.value },
+      ],
     };
   });
 
   const card3Style = useAnimatedStyle(() => {
     return {
-      position: 'absolute',
+      position: "absolute",
       zIndex: -2,
-      transform: [{ translateY: thirdTransY.value }, { scale: thirdScale.value }],
+      transform: [
+        { translateY: thirdTransY.value },
+        { scale: thirdScale.value },
+      ],
     };
   });
 
   return (
     <Container>
       <Animated.View style={[styles.mask, stylem]} />
-      <PanGestureHandler enabled={!cardOpened} onGestureEvent={handlePanGesture}>
+      <PanGestureHandler
+        enabled={!cardOpened}
+        onGestureEvent={handlePanGesture}
+      >
         <Animated.View style={styles.wrapper}>
           <Animated.View style={[styles.shadow, card1Style]}>
             <ProjectCard
@@ -201,8 +210,8 @@ const Container = styled.View`
 const styles = StyleSheet.create({
   wrapper: {
     ...StyleSheet.absoluteFill,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   shadow: {
     shadowColor: colors.black,

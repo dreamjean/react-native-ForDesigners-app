@@ -1,13 +1,9 @@
 {
   "expo": {
-    "name": "DesignCode",
-    "slug": "DesignCode",
+    "name": "ForDesigners",
+    "slug": "ForDesigners",
     "version": "1.0.0",
-    "orientation": "default",
-    "packagerOpts": {
-      "config": "metro.config.js",
-      "sourceExts": ["js", "jsx", "svg", "svgx"]
-    },
+    "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "splash": {
       "image": "./app/assets/splash.png",
@@ -25,12 +21,16 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/icon.png",
+        "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
     }
+  },
+  "packagerOpts": {
+    "config": "metro.config.js",
+    "sourceExts": ["js", "jsx", "svg", "svgx"]
   }
 }

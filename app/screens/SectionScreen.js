@@ -1,9 +1,9 @@
-import React from 'react';
-import { ScrollView, StatusBar } from 'react-native';
-import Markdown from 'react-native-showdown';
-import styled from 'styled-components';
+import React from "react";
+import { ScrollView, StatusBar } from "react-native";
+import Markdown from "react-native-showdown";
+import styled from "styled-components";
 
-import { Header } from '../components';
+import { Header } from "../components";
 
 const SectionScreen = ({ route, navigation }) => {
   const section = route?.params;
@@ -17,7 +17,7 @@ const SectionScreen = ({ route, navigation }) => {
           caption={section.caption}
           imageUrl={section.image.url}
           logoUrl={section.logo.url}
-          onPress={() => navigation.navigate('Video', { section })}
+          onPress={() => navigation.navigate("Video", { section })}
         />
 
         <Content>

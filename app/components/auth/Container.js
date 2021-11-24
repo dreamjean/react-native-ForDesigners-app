@@ -1,20 +1,20 @@
-import { useIsFocused } from '@react-navigation/native';
-import { BlurView } from 'expo-blur';
-import React, { useEffect } from 'react';
-import { StyleSheet } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { useIsFocused } from "@react-navigation/native";
+import { BlurView } from "expo-blur";
+import React, { useEffect } from "react";
+import { StyleSheet } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withDelay,
   withSpring,
   withTiming,
-} from 'react-native-reanimated';
-import styled from 'styled-components';
+} from "react-native-reanimated";
+import styled from "styled-components";
 
-import { calendar, images } from '../../config';
+import { constants, images } from "../../config";
 
-const { height, AUTH_CARD_WIDTH } = calendar;
+const { height, AUTH_CARD_WIDTH } = constants;
 
 const Container = ({ children }) => {
   const isFocused = useIsFocused();
@@ -38,11 +38,15 @@ const Container = ({ children }) => {
   });
 
   return (
-    <ImageBackground source={images[29]}>
+    <ImageBackground source={images.geometry}>
       <BlurView intensity={80} style={{ flex: 1 }} />
       <Cover style={StyleSheet.absoluteFill}>
         <KeyboardAwareScrollView
-          contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}
+          contentContainerStyle={{
+            flexGrow: 1,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
           extraScrollHeight={120}
           enableOnAndroid
           enableAutomaticScroll

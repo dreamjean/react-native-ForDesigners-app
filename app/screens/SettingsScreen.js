@@ -1,20 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import useAuth from '../auth/useAuth';
-import { Content, IconButton, SettingsItem } from '../components';
-import Text from '../components/styles/Text';
-import { calendar, colors } from '../config';
-import { settings } from '../data';
+import useAuth from "../auth/useAuth";
+import { Content, IconButton, SettingsItem } from "../components";
+import Text from "../components/styles/Text";
+import { colors, constants } from "../config";
+import { settings } from "../data";
 
-const { width } = calendar;
+const { width } = constants;
 let cardWidth = width > 500 ? 500 : width;
 
 const SettingsScreen = ({ navigation }) => {
   const { user, logout } = useAuth();
 
   const handlePress = (title) => {
-    if (title === 'Log out') return logout();
+    if (title === "Log out") return logout();
   };
 
   return (
@@ -29,7 +29,7 @@ const SettingsScreen = ({ navigation }) => {
           </Text>
         </TitleBox>
         <IconButton
-          style={{ alignSelf: 'center', marginTop: 8 }}
+          style={{ alignSelf: "center", marginTop: 8 }}
           size={48}
           iconName="close"
           bgColor={colors.white}

@@ -1,21 +1,21 @@
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react';
-import { Pressable, StatusBar } from 'react-native';
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import { Pressable, StatusBar } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
   withTiming,
-} from 'react-native-reanimated';
-import styled from 'styled-components';
+} from "react-native-reanimated";
+import styled from "styled-components";
 
-import Image from '../../components/styles/Image';
-import Text from '../../components/styles/Text';
-import { calendar, colors } from '../../config';
-import IconButton from '../IconButton';
+import Image from "../../components/styles/Image";
+import Text from "../../components/styles/Text";
+import { colors, constants } from "../../config";
+import IconButton from "../IconButton";
 
-const { width, height, PROJECT_CARD_WIDTH, PROJECT_CARD_HEIGHT } = calendar;
+const { width, height, PROJECT_CARD_WIDTH, PROJECT_CARD_HEIGHT } = constants;
 
 const ProjectCard = ({ image, title, author, text, setCardOpened }) => {
   const tabBarHeight = useBottomTabBarHeight();
@@ -79,9 +79,9 @@ const ProjectCard = ({ image, title, author, text, setCardOpened }) => {
 
   const styleg = useAnimatedStyle(() => {
     return {
-      position: 'absolute',
+      position: "absolute",
       top: 330,
-      width: '100%',
+      width: "100%",
       height: textHeight.value,
     };
   });
@@ -101,9 +101,19 @@ const ProjectCard = ({ image, title, author, text, setCardOpened }) => {
         <AnimatedText caption2 dark style={stylet2}>
           {text}
         </AnimatedText>
-        <AnimatedLinearGradient colors={[colors.transparent, colors.white]} style={styleg} />
-        <Animated.View style={[{ position: 'absolute', top: 20, right: 20 }, stylei]}>
-          <IconButton iconName="close" bgColor={colors.white} size={32} onPress={closeCard} />
+        <AnimatedLinearGradient
+          colors={[colors.transparent, colors.white]}
+          style={styleg}
+        />
+        <Animated.View
+          style={[{ position: "absolute", top: 20, right: 20 }, stylei]}
+        >
+          <IconButton
+            iconName="close"
+            bgColor={colors.white}
+            size={32}
+            onPress={closeCard}
+          />
         </Animated.View>
       </AnimatedContainer>
     </Pressable>

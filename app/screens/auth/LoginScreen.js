@@ -1,29 +1,34 @@
-import React, { useState } from 'react';
-import { Keyboard } from 'react-native';
-import styled from 'styled-components';
-import * as Yup from 'yup';
+import React, { useState } from "react";
+import { Keyboard } from "react-native";
+import styled from "styled-components";
+import * as Yup from "yup";
 
-import { ActivityIndicator, Container, TextLinking } from '../../components';
-import { ErrorMessage, Form, FormField, SubmitButton } from '../../components/form';
-import Image from '../../components/styles/Image';
-import Text from '../../components/styles/Text';
-import { images } from '../../config';
-import { auth, firebase } from '../../firebase';
+import { ActivityIndicator, Container, TextLinking } from "../../components";
+import {
+  ErrorMessage,
+  Form,
+  FormField,
+  SubmitButton,
+} from "../../components/form";
+import Image from "../../components/styles/Image";
+import Text from "../../components/styles/Text";
+import { images } from "../../config";
+import { auth, firebase } from "../../firebase";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required().email().label('Email'),
+  email: Yup.string().required().email().label("Email"),
   password: Yup.string()
     .required()
     .min(6)
     .max(50)
-    .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
-    .matches(/\d/, 'Password must have a number')
-    .label('Password'),
+    .matches(/\w*[a-z]\w*/, "Password must have a small letter")
+    .matches(/\d/, "Password must have a number")
+    .label("Password"),
 });
 
 const LoginScreen = ({ navigation }) => {
-  const [iconEmail, setIconEmail] = useState(images[30]);
-  const [iconPassword, setIconPassword] = useState(images[31]);
+  const [iconEmail, setIconEmail] = useState(images.email);
+  const [iconPassword, setIconPassword] = useState(images.password);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [inputs] = useState([]);
@@ -31,13 +36,13 @@ const LoginScreen = ({ navigation }) => {
   const focusNextField = (nextField) => inputs[nextField].focus();
 
   const focusEmail = () => {
-    setIconEmail(require('../../assets/icon-email-animated.gif'));
+    setIconEmail(require("../../assets/icon-email-animated.gif"));
     setIconPassword(images[31]);
   };
 
   const focusPassword = () => {
     setIconEmail(images[30]);
-    setIconPassword(require('../../assets/icon-password-animated.gif'));
+    setIconPassword(require("../../assets/icon-password-animated.gif"));
   };
 
   const handleSubmit = async ({ email, password }) => {
@@ -48,7 +53,9 @@ const LoginScreen = ({ navigation }) => {
       // 设置用户持久登录
       await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
-      await auth.signInWithEmailAndPassword(email, password).then(() => setLoading(false));
+      await auth
+        .signInWithEmailAndPassword(email, password)
+        .then(() => setLoading(false));
     } catch (error) {
       setError(error.message);
     }
@@ -62,7 +69,7 @@ const LoginScreen = ({ navigation }) => {
       <Title caption1>Start learning Sccess pro content.</Title>
       <Wrapper>
         <Form
-          initialValues={{ email: '', password: '' }}
+          initialValues={{ email: "", password: "" }}
           onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
@@ -78,7 +85,7 @@ const LoginScreen = ({ navigation }) => {
             keyboardType="email-address"
             name="email"
             onFocus={focusEmail}
-            onSubmitEditing={() => focusNextField('password')}
+            onSubmitEditing={() => focusNextField("password")}
             placeholder="Email"
             returnKeyLabel="next"
             returnKeyType="next"
@@ -96,7 +103,7 @@ const LoginScreen = ({ navigation }) => {
             maxLength={50}
             name="password"
             onFocus={focusPassword}
-            onRef={(input) => (inputs['password'] = input)}
+            onRef={(input) => (inputs["password"] = input)}
             placeholder="Password"
             returnKeyLabel="go"
             returnKeyType="go"
@@ -108,7 +115,7 @@ const LoginScreen = ({ navigation }) => {
         <TextLinking
           caption="Don't have an account? "
           title="Create here"
-          onPress={() => navigation.navigate('Register')}
+          onPress={() => navigation.navigate("Register")}
         />
       </Wrapper>
     </Container>

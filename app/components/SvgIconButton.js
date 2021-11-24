@@ -1,11 +1,18 @@
-import React from 'react';
-import { Pressable } from 'react-native';
-import styled from 'styled-components';
+import React from "react";
+import { Pressable } from "react-native";
+import styled from "styled-components";
 
-import { colors } from '../config';
-import Text from './styles/Text';
+import { colors } from "../config";
+import Text from "./styles/Text";
 
-const SvgIconButton = ({ SvgName, color = colors.blue, width, height, number, onPress }) => (
+const SvgIconButton = ({
+  SvgName,
+  color = colors.blue,
+  width,
+  height,
+  number,
+  onPress,
+}) => (
   <Pressable
     onPress={onPress}
     style={({ pressed }) => ({

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Dimensions } from 'react-native';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import { Dimensions } from "react-native";
+import styled from "styled-components";
 
-import { calendar } from '../../config';
-import Image from '../styles/Image';
-import Text from '../styles/Text';
+import { constants } from "../../config";
+import Image from "../styles/Image";
+import Text from "../styles/Text";
 
-const { width, COURSE_CARD_HEIGHT, COURSE_IMAGE_HEIGHT } = calendar;
+const { width, COURSE_CARD_HEIGHT, COURSE_IMAGE_HEIGHT } = constants;
 
 const getCourseWidth = (screenWidth) => {
   let cardWidth = screenWidth - 40;
@@ -15,14 +15,23 @@ const getCourseWidth = (screenWidth) => {
   return cardWidth;
 };
 
-const CourseCard = ({ image, logo, title, subTitle, caption, avatar, author }) => {
+const CourseCard = ({
+  image,
+  logo,
+  title,
+  subTitle,
+  caption,
+  avatar,
+  author,
+}) => {
   const [cardWidth, setCardWidth] = useState(getCourseWidth(width));
 
   useEffect(() => {
-    Dimensions.addEventListener('change', adaptLayout);
+    Dimensions.addEventListener("change", adaptLayout);
   }, []);
 
-  const adaptLayout = (dimensions) => setCardWidth(getCourseWidth(dimensions.window.width));
+  const adaptLayout = (dimensions) =>
+    setCardWidth(getCourseWidth(dimensions.window.width));
 
   return (
     <Container style={{ width: cardWidth }}>
@@ -44,7 +53,7 @@ const CourseCard = ({ image, logo, title, subTitle, caption, avatar, author }) =
             {caption}
           </Text>
           <Text caption1 marginTop={4}>
-            Taught by{' '}
+            Taught by{" "}
             <Text dark opacity={0.6}>
               {author}
             </Text>

@@ -1,13 +1,19 @@
-import { useQuery } from '@apollo/client';
-import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import { useQuery } from "@apollo/client";
+import { StatusBar } from "expo-status-bar";
+import React, { useEffect } from "react";
+import styled from "styled-components";
 
-import useAuth from '../auth/useAuth';
-import { ActivityIndicator, Avatar, Courses, LogoCard, SectionCard } from '../components';
-import Text from '../components/styles/Text';
-import { logos } from '../data';
-import GET_CARDS_ITEMS from '../query/sectionCards';
+import useAuth from "../auth/useAuth";
+import {
+  ActivityIndicator,
+  Avatar,
+  Courses,
+  LogoCard,
+  SectionCard,
+} from "../components";
+import Text from "../components/styles/Text";
+import { logos } from "../data";
+import GET_CARDS_ITEMS from "../query/sectionCards";
 
 const HomeScreen = ({ navigation }) => {
   const { user, getUser } = useAuth();
@@ -32,8 +38,8 @@ const HomeScreen = ({ navigation }) => {
         <Avatar
           avatar={user.photo}
           name={user.name}
-          onAvatarPress={() => navigation.navigate('Settings')}
-          onIconPress={() => navigation.navigate('Notifications')}
+          onAvatarPress={() => navigation.navigate("Settings")}
+          onIconPress={() => navigation.navigate("Notifications")}
         />
         <Wrapper>
           <Listing
@@ -61,7 +67,7 @@ const HomeScreen = ({ navigation }) => {
                 logo={card.logo.url}
                 subTitle={card.subTitle}
                 caption={card.caption}
-                onPress={() => navigation.navigate('Section', card)}
+                onPress={() => navigation.navigate("Section", card)}
               />
             ))}
           </Listing>

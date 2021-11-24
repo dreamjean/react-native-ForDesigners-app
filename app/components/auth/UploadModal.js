@@ -1,23 +1,23 @@
-import LottieView from 'lottie-react-native';
-import React from 'react';
-import styled from 'styled-components';
+import LottieView from "lottie-react-native";
+import React from "react";
+import styled from "styled-components";
 
 const UploadModal = ({ visible = false, onDone, uploadState }) => {
   return (
     <Modal {...{ visible }}>
       <Container>
-        {uploadState === 'uploading' ? (
+        {uploadState === "uploading" ? (
           <LottieView
             autoPlay
             loop
-            source={require('../../assets/animations/lottie-fluid-loading.json')}
+            source={require("../../assets/animations/lottie-fluid-loading.json")}
           />
         ) : (
           <LottieView
             autoPlay
             loop={false}
             onAnimationFinish={onDone}
-            source={require('../../assets/animations/lottie-checked-done.json')}
+            source={require("../../assets/animations/lottie-checked-done.json")}
           />
         )}
       </Container>

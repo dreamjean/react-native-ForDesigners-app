@@ -1,9 +1,9 @@
-import React from 'react';
-import { Pressable } from 'react-native';
-import styled from 'styled-components';
+import React from "react";
+import { Pressable } from "react-native";
+import styled from "styled-components";
 
-import { colors } from '../config';
-import Text from './styles/Text';
+import { colors } from "../config";
+import Text from "./styles/Text";
 
 const Button = ({
   bgColor = colors.blue2,
@@ -11,7 +11,7 @@ const Button = ({
   color = colors.white,
   title,
   margin,
-  width = '100%',
+  width = "100%",
   upper = false,
   onPress,
 }) => {
@@ -21,12 +21,12 @@ const Button = ({
       style={({ pressed }) => ({
         borderRadius: 5,
         opacity: pressed ? 0.5 : 1,
-        overflow: 'hidden',
+        overflow: "hidden",
         height: 50,
         marginTop: 10,
         margin,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center",
       })}
     >
       <Container {...{ bgColor, borderColor, width }}>
@@ -48,7 +48,7 @@ const Container = styled.View`
     borderColor,
     borderRadius: radii.s2,
     borderWidth: borderColor ? 2 : 0,
-    height: borderColor ? '85%' : '100%',
+    height: borderColor ? "85%" : "100%",
     width,
   })}
 `;

@@ -1,10 +1,10 @@
-import 'firebase/auth';
-import 'firebase/firestore';
-import 'firebase/storage';
+import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
 
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 
-import keys from './keys';
+import keys from "./keys";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(keys.firebaseConfig);

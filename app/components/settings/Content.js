@@ -1,10 +1,10 @@
-import React from 'react';
-import Svg, { ClipPath, Defs, Image, Path } from 'react-native-svg';
-import styled from 'styled-components';
+import React from "react";
+import Svg, { ClipPath, Defs, Image, Path } from "react-native-svg";
+import styled from "styled-components";
 
-import { calendar, colors, images } from '../../config';
+import { colors, constants, images } from "../../config";
 
-const { width, BAR_HEIGHT } = calendar;
+const { width, BAR_HEIGHT } = constants;
 const x = width;
 const y = BAR_HEIGHT - 30;
 
@@ -20,11 +20,11 @@ const Content = ({ children }) => {
       <Svg
         width="100%"
         height={BAR_HEIGHT}
-        style={{ position: 'absolute', top: 0, left: 0, right: 0 }}
+        style={{ position: "absolute", top: 0, left: 0, right: 0 }}
       >
         <Defs>
           <ClipPath id="clip">
-            <Path d={d} fill={colors.white} style={{ overflow: 'hidden' }} />
+            <Path d={d} fill={colors.white} style={{ overflow: "hidden" }} />
           </ClipPath>
         </Defs>
 
@@ -34,7 +34,7 @@ const Content = ({ children }) => {
           width="100%"
           height="100%"
           preserveAspectRatio="xMidYMid slice"
-          href={images[1]}
+          href={images.background1}
           clipPath="url(#clip)"
         />
       </Svg>

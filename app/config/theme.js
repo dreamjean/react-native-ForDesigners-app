@@ -1,16 +1,14 @@
-import { Dimensions, Platform } from 'react-native';
+import { Platform } from "react-native";
 
-import colors from './colors';
+import colors from "./colors";
 
-const { width, height } = Dimensions.get('window');
-
-export const isIos = Platform.OS === 'ios';
+export const isIos = Platform.OS === "ios";
 
 const getFont = (n) => (isIos ? fonts.ios[n] : fonts.android[n]);
 
 const fonts = {
-  ios: ['Proxima-Nova-Bold', 'Proxima-Nova-Sbold', 'Proxima-Nova-Reg'],
-  android: ['Montserrat-Bold', 'Montserrat-SemiBold', 'Montserrat-Regular'],
+  ios: ["Proxima-Nova-Bold", "Proxima-Nova-Sbold", "Proxima-Nova-Reg"],
+  android: ["Montserrat-Bold", "Montserrat-SemiBold", "Montserrat-Regular"],
 };
 
 export default {
@@ -54,6 +52,4 @@ export default {
   },
 
   getFont,
-  width,
-  height,
 };

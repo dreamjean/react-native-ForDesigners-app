@@ -1,33 +1,37 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import React, { forwardRef } from 'react';
-import styled from 'styled-components';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React, { forwardRef } from "react";
+import styled from "styled-components";
 
-import { colors } from '../config';
-import Image from './styles/Image';
+import { colors } from "../config";
+import Image from "./styles/Image";
 
-const TextInput = forwardRef(({ icon, image, error, touched, ...rest }, ref) => {
-  return (
-    <Container {...{ error, touched }}>
-      <IconBox>
-        {icon && (
-          <MaterialCommunityIcons
-            name={icon}
-            size={24}
-            color={!touched ? colors.grey2 : error ? colors.danger : colors.blue2}
-          />
-        )}
-        {image && <Image icon resizeMode="contain" source={image} />}
-      </IconBox>
-      <Input
-        {...{ ref }}
-        {...rest}
-        numberOfLines={1}
-        selectionColor={colors.grey}
-        placeholderTextcolor={colors.grey2}
-      />
-    </Container>
-  );
-});
+const TextInput = forwardRef(
+  ({ icon, image, error, touched, ...rest }, ref) => {
+    return (
+      <Container {...{ error, touched }}>
+        <IconBox>
+          {icon && (
+            <MaterialCommunityIcons
+              name={icon}
+              size={24}
+              color={
+                !touched ? colors.grey2 : error ? colors.danger : colors.blue2
+              }
+            />
+          )}
+          {image && <Image icon resizeMode="contain" source={image} />}
+        </IconBox>
+        <Input
+          {...{ ref }}
+          {...rest}
+          numberOfLines={1}
+          selectionColor={colors.grey}
+          placeholderTextcolor={colors.grey2}
+        />
+      </Container>
+    );
+  }
+);
 
 const Container = styled.View`
   flex-direction: row;

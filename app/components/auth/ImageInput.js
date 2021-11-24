@@ -1,12 +1,12 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import * as ImagePicker from 'expo-image-picker';
-import React, { useEffect, useState } from 'react';
-import { Platform, Pressable } from 'react-native';
-import styled from 'styled-components';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+import React, { useEffect, useState } from "react";
+import { Platform, Pressable } from "react-native";
+import styled from "styled-components";
 
-import { colors } from '../../config';
-import Image from '../styles/Image';
-import PermissionModal from './PermissionModal';
+import { colors } from "../../config";
+import Image from "../styles/Image";
+import PermissionModal from "./PermissionModal";
 
 const ImageInput = ({ image, onChangeImage }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -20,19 +20,20 @@ const ImageInput = ({ image, onChangeImage }) => {
   }, []);
 
   const requestMediaLibraryPermission = async () => {
-    if (Platform.OS !== 'web') {
-      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== 'granted') {
-        alert('Sorry, we need camera roll permissions to make this work!');
+    if (Platform.OS !== "web") {
+      const { status } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== "granted") {
+        alert("Sorry, we need camera roll permissions to make this work!");
       }
     }
   };
 
   const requestCameraPermission = async () => {
-    if (Platform.OS !== 'web') {
+    if (Platform.OS !== "web") {
       const { status } = await ImagePicker.requestCameraPermissionsAsync();
-      if (status !== 'granted') {
-        alert('Sorry, we need camera permissions to make this work!');
+      if (status !== "granted") {
+        alert("Sorry, we need camera permissions to make this work!");
       }
     }
   };
@@ -48,7 +49,7 @@ const ImageInput = ({ image, onChangeImage }) => {
 
       if (!result.cancelled) onChangeImage(result.uri);
     } catch (error) {
-      console.log('Error @pickImage', error);
+      console.log("Error @pickImage", error);
     }
 
     setModalVisible(false);
@@ -65,7 +66,7 @@ const ImageInput = ({ image, onChangeImage }) => {
 
       if (!result.cancelled) onChangeImage(result.uri);
     } catch (error) {
-      console.log('Error @pickImage', error);
+      console.log("Error @pickImage", error);
     }
 
     setModalVisible(false);
@@ -75,8 +76,8 @@ const ImageInput = ({ image, onChangeImage }) => {
     <Pressable
       style={({ pressed }) => ({
         background: pressed ? colors.lightBlue : colors.lightBlue2,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
       })}
       onPress={() => setModalVisible(true)}
     >

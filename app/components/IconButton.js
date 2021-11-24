@@ -1,7 +1,7 @@
-import React from 'react';
-import { Pressable } from 'react-native';
+import React from "react";
+import { Pressable } from "react-native";
 
-import RoundIcon from './RoundIcon';
+import RoundIcon from "./RoundIcon";
 
 const IconButton = ({ onPress, style, ...rest }) => {
   return (

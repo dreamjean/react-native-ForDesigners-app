@@ -1,27 +1,29 @@
+import { images } from "../config";
+
 export default [
   {
-    title: 'React Native for Designers',
+    title: "React Native for Designers",
     progress: 0.2,
-    image: require('../assets/background1.jpg'),
+    image: images.background1,
   },
   {
-    title: 'Styled Components',
+    title: "Styled Components",
     progress: 0.3,
-    image: require('../assets/background2.jpg'),
+    image: images.background2,
   },
   {
-    title: 'Assets, Icons and SVG',
+    title: "Assets, Icons and SVG",
     progress: 0.9,
-    image: require('../assets/background3.jpg'),
+    image: images.background3,
   },
   {
-    title: 'Props and Data',
+    title: "Props and Data",
     progress: 0.5,
-    image: require('../assets/background4.jpg'),
+    image: images.background4,
   },
   {
-    title: 'States and Layout Animation',
+    title: "States and Layout Animation",
     progress: 0.1,
-    image: require('../assets/background6.jpg'),
+    image: images.background6,
   },
 ];

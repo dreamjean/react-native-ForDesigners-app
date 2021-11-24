@@ -1,14 +1,14 @@
-import React from 'react';
-import { Pressable } from 'react-native';
-import styled from 'styled-components';
+import React from "react";
+import { Pressable } from "react-native";
+import styled from "styled-components";
 
-import Text from '../styles/Text';
+import Text from "../styles/Text";
 
 const TextLinking = ({ caption, title, onPress }) => {
   return (
     <Container>
       <Text button2 grey>
-        {caption}{' '}
+        {caption}{" "}
       </Text>
       <Pressable
         style={({ pressed }) => ({

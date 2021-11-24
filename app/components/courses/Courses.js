@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { courses } from '../../data';
-import CourseCard from './CourseCard';
+import { courses } from "../../data";
+import CourseCard from "./CourseCard";
 
 const Courses = () => {
   return (

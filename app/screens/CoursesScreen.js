@@ -1,25 +1,25 @@
-import { LinearGradient } from 'expo-linear-gradient';
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import styled from 'styled-components';
+import { LinearGradient } from "expo-linear-gradient";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet } from "react-native";
+import styled from "styled-components";
 
-import { Courses, CourseSection } from '../components';
-import Image from '../components/styles/Image';
-import Text from '../components/styles/Text';
-import { colors, images } from '../config';
-import { courseSections } from '../data';
+import { Courses, CourseSection } from "../components";
+import Image from "../components/styles/Image";
+import Text from "../components/styles/Text";
+import { colors, images } from "../config";
+import { courseSections } from "../data";
 
 const CoursesScreen = () => {
   return (
     <Container>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <ImageCover source={images[12]}>
+        <ImageCover source={images.background12}>
           <LinearGradient
             colors={[colors.transparent, colors.light]}
             style={StyleSheet.absoluteFill}
           />
-          <Logo logo3 source={images[21]} />
+          <Logo logo3 source={images.logoReact} />
           <HeaderWrapper>
             <Text caption3 upper>
               12 Sections
@@ -43,7 +43,7 @@ const CoursesScreen = () => {
             </SectionScrollView>
           </Sections>
           <Author>
-            <Image avatar source={images[17]} />
+            <Image avatar source={images.avatar} />
             <Text caption2>Taught by Meng To</Text>
           </Author>
         </ImageCover>

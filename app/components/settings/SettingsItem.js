@@ -1,10 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
-import { RectButton } from 'react-native-gesture-handler';
-import styled from 'styled-components';
+import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { RectButton } from "react-native-gesture-handler";
+import styled from "styled-components";
 
-import { colors } from '../../config';
-import Text from '../styles/Text';
+import { colors } from "../../config";
+import Text from "../styles/Text";
 
 const SettingsItem = ({ icon, title, text, onPress }) => {
   return (

@@ -1,25 +1,28 @@
-import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import styled from 'styled-components';
+import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import { StyleSheet } from "react-native";
+import styled from "styled-components";
 
-import { colors } from '../../config';
-import Text from '../styles/Text';
+import { colors } from "../../config";
+import Text from "../styles/Text";
 
 const CourseSection = ({ title, image, progress }) => (
   <Container>
     <ImageMask source={image}>
-      <LinearGradient colors={[colors.transparent, colors.light]} style={StyleSheet.absoluteFill} />
+      <LinearGradient
+        colors={[colors.transparent, colors.light]}
+        style={StyleSheet.absoluteFill}
+      />
       <LinearGradient
         colors={[colors.blue3, colors.lightBlue]}
         start={[0, 0]}
         end={[1, 0]}
         style={{
-          position: 'absolute',
+          position: "absolute",
           bottom: 0,
           height: 4,
           borderRadius: 2,
-          width: progress * 100 + '%',
+          width: progress * 100 + "%",
         }}
       />
       <Border style={StyleSheet.absoluteFillObject} />

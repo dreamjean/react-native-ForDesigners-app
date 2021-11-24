@@ -1,15 +1,15 @@
-import React from 'react';
-import Animated, { useAnimatedStyle } from 'react-native-reanimated';
-import styled from 'styled-components';
+import React from "react";
+import Animated, { useAnimatedStyle } from "react-native-reanimated";
+import styled from "styled-components";
 
-import Image from '../styles/Image';
-import Text from '../styles/Text';
-import SwipeableRow from './SwipeableRow';
+import Image from "../styles/Image";
+import Text from "../styles/Text";
+import SwipeableRow from "./SwipeableRow";
 
 const Notification = ({ item, opacity, translateY, onRemove }) => {
   const stylez = useAnimatedStyle(() => {
     return {
-      width: '100%',
+      width: "100%",
       opacity: opacity.value,
       transform: [{ translateY: translateY.value }],
     };

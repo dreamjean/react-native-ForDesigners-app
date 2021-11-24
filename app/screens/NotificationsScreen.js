@@ -1,14 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
-import { useSharedValue, withDelay, withSpring, withTiming } from 'react-native-reanimated';
-import styled from 'styled-components';
+import React, { useCallback, useEffect, useState } from "react";
+import { ScrollView } from "react-native";
+import {
+  useSharedValue,
+  withDelay,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
+import styled from "styled-components";
 
-import { IconButton, Notification } from '../components';
-import Text from '../components/styles/Text';
-import { calendar, colors } from '../config';
-import { notifications } from '../data';
+import { IconButton, Notification } from "../components";
+import Text from "../components/styles/Text";
+import { colors, constants } from "../config";
+import { notifications } from "../data";
 
-const { width } = calendar;
+const { width } = constants;
 
 let cardWidth = width - 40;
 if (width > 500) {
@@ -25,10 +30,13 @@ const NotificationsScreen = ({ navigation }) => {
       let isActive = true;
 
       translateY.value = withSpring(isActive ? 0 : 30);
-      opacity.value = withDelay(150, withTiming(isActive ? 1 : 0, { duration: 500 }));
+      opacity.value = withDelay(
+        150,
+        withTiming(isActive ? 1 : 0, { duration: 500 })
+      );
 
       return () => (isActive = false);
-    }, [translateY, opacity]),
+    }, [translateY, opacity])
   );
 
   const handleDelete = (id) => {
@@ -39,7 +47,7 @@ const NotificationsScreen = ({ navigation }) => {
     <Container>
       <ScrollView
         contentContainerStyle={{
-          alignItems: 'center',
+          alignItems: "center",
           padding: 20,
           paddingTop: 50,
         }}

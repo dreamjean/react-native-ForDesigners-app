@@ -1,36 +1,36 @@
-import React, { useState } from 'react';
-import { Keyboard } from 'react-native';
-import styled from 'styled-components';
-import * as Yup from 'yup';
+import React, { useState } from "react";
+import { Keyboard } from "react-native";
+import styled from "styled-components";
+import * as Yup from "yup";
 
-import { Container, TextLinking, UploadModal } from '../../components';
+import { Container, TextLinking, UploadModal } from "../../components";
 import {
   ErrorMessage,
   Form,
   FormField,
   FormImagePicker,
   SubmitButton,
-} from '../../components/form';
-import Text from '../../components/styles/Text';
-import { auth, db, storage } from '../../firebase';
+} from "../../components/form";
+import Text from "../../components/styles/Text";
+import { auth, db, storage } from "../../firebase";
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required().max(50).label('Name'),
-  email: Yup.string().required().email().label('Email'),
+  name: Yup.string().required().max(50).label("Name"),
+  email: Yup.string().required().email().label("Email"),
   password: Yup.string()
     .required()
     .min(6)
     .max(50)
-    .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
-    .matches(/\d/, 'Password must have a number')
-    .label('Password'),
-  photo: Yup.string().required().nullable().label('Photo'),
+    .matches(/\w*[a-z]\w*/, "Password must have a small letter")
+    .matches(/\d/, "Password must have a number")
+    .label("Password"),
+  photo: Yup.string().required().nullable().label("Photo"),
 });
 
 const RegisterScreen = ({ navigation }) => {
   const [error, setError] = useState();
   const [uploadVisible, setUploadVisible] = useState(false);
-  const [uploadState, setUploadState] = useState('uploading');
+  const [uploadState, setUploadState] = useState("uploading");
   const [inputs] = useState([]);
 
   const focusNextField = (nextField) => inputs[nextField].focus();
@@ -44,8 +44,10 @@ const RegisterScreen = ({ navigation }) => {
       const task = storage.ref().child(childPath).put(blob);
 
       const taskProgress = (snapshot) => {
-        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        if (progress === 100) setUploadState('done');
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        if (progress === 100) setUploadState("done");
       };
 
       const taskError = (error) => {
@@ -54,7 +56,7 @@ const RegisterScreen = ({ navigation }) => {
 
       const taskCompleted = () => {
         task.snapshot.ref.getDownloadURL().then((url) => {
-          db.collection('users').doc(uid).set({
+          db.collection("users").doc(uid).set({
             uid,
             photo: url,
             name,
@@ -63,7 +65,7 @@ const RegisterScreen = ({ navigation }) => {
         });
       };
 
-      task.on('state_changed', taskProgress, taskError, taskCompleted);
+      task.on("state_changed", taskProgress, taskError, taskCompleted);
     } catch (error) {
       console.log(error);
     }
@@ -76,17 +78,19 @@ const RegisterScreen = ({ navigation }) => {
     const { name, email, password, photo } = userInfo;
 
     try {
-      await auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
-        const { uid } = userCredential.user;
+      await auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const { uid } = userCredential.user;
 
-        uploadImage(uid, name, email, photo);
+          uploadImage(uid, name, email, photo);
 
-        setUploadVisible(false);
-      });
+          setUploadVisible(false);
+        });
     } catch (error) {
       setError(error.message);
       setUploadVisible(false);
-      console.log('@Error Register: ', error.message);
+      console.log("@Error Register: ", error.message);
     }
   };
 
@@ -102,9 +106,9 @@ const RegisterScreen = ({ navigation }) => {
         <Form
           initialValues={{
             photo: null,
-            name: '',
-            email: '',
-            password: '',
+            name: "",
+            email: "",
+            password: "",
           }}
           onSubmit={handleSubmit}
           validationSchema={validationSchema}
@@ -121,7 +125,7 @@ const RegisterScreen = ({ navigation }) => {
             keyboardAppearance="default"
             keyboardType="default"
             name="name"
-            onSubmitEditing={() => focusNextField('email')}
+            onSubmitEditing={() => focusNextField("email")}
             placeholder="Name"
             returnKeyLabel="next"
             returnKeyType="next"
@@ -137,8 +141,8 @@ const RegisterScreen = ({ navigation }) => {
             keyboardAppearance="default"
             keyboardType="email-address"
             name="email"
-            onSubmitEditing={() => focusNextField('password')}
-            onRef={(input) => (inputs['email'] = input)}
+            onSubmitEditing={() => focusNextField("password")}
+            onRef={(input) => (inputs["email"] = input)}
             placeholder="Email"
             returnKeyLabel="next"
             returnKeyType="next"
@@ -155,7 +159,7 @@ const RegisterScreen = ({ navigation }) => {
             keyboardType="default"
             maxLength={50}
             name="password"
-            onRef={(input) => (inputs['password'] = input)}
+            onRef={(input) => (inputs["password"] = input)}
             placeholder="Password"
             returnKeyLabel="go"
             returnKeyType="go"
@@ -168,7 +172,7 @@ const RegisterScreen = ({ navigation }) => {
         <TextLinking
           caption="Already have an account?"
           title="Login"
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate("Login")}
         />
       </Wrapper>
     </Container>

@@ -1,12 +1,17 @@
-import React from 'react';
-import { Modal } from 'react-native';
-import styled from 'styled-components';
+import React from "react";
+import { Modal } from "react-native";
+import styled from "styled-components";
 
-import { colors } from '../../config';
-import Button from '../Button';
-import Text from '../styles/Text';
+import { colors } from "../../config";
+import Button from "../Button";
+import Text from "../styles/Text";
 
-function PermissionModal({ visible, onCameraPermission, onCameraRollPermission, onCloseModal }) {
+function PermissionModal({
+  visible,
+  onCameraPermission,
+  onCameraRollPermission,
+  onCloseModal,
+}) {
   return (
     <Modal {...{ visible }} animationType="slide" transparent>
       <Container style={{ elevation: 10 }}>
@@ -18,7 +23,10 @@ function PermissionModal({ visible, onCameraPermission, onCameraRollPermission, 
         </TitleWrapper>
         <Box>
           <Button title="Take Photo" onPress={onCameraPermission} />
-          <Button title="Choose Fromm Library" onPress={onCameraRollPermission} />
+          <Button
+            title="Choose Fromm Library"
+            onPress={onCameraRollPermission}
+          />
           <Button
             title="Cancle"
             bgColor={colors.transparent}

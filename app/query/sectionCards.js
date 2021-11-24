@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const GET_CARDS_ITEMS = gql`
   query GetCardsItems {

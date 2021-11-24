@@ -1,9 +1,9 @@
-import React from 'react';
-import { RectButton } from 'react-native-gesture-handler';
-import styled from 'styled-components';
+import React from "react";
+import { RectButton } from "react-native-gesture-handler";
+import styled from "styled-components";
 
-import Image from '../styles/Image';
-import Text from '../styles/Text';
+import Image from "../styles/Image";
+import Text from "../styles/Text";
 
 const SectionCard = ({ image, title, logo, subTitle, caption, onPress }) => {
   return (

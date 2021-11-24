@@ -1,13 +1,17 @@
-import LottieView from 'lottie-react-native';
-import React from 'react';
-import styled from 'styled-components';
+import LottieView from "lottie-react-native";
+import React from "react";
+import styled from "styled-components";
 
 const ActivityIndicator = ({ visible = false }) => {
   if (!visible) return null;
 
   return (
     <Container>
-      <LottieView autoPlay loop source={require('../assets/animations/lottie-glow-loading.json')} />
+      <LottieView
+        autoPlay
+        loop
+        source={require("../assets/animations/lottie-glow-loading.json")}
+      />
     </Container>
   );
 };

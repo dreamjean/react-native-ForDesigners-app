@@ -1,7 +1,7 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 
-import { auth, db } from '../firebase';
-import AuthContext from './context';
+import { auth, db } from "../firebase";
+import AuthContext from "./context";
 
 const useAuth = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -10,7 +10,7 @@ const useAuth = () => {
     const { uid } = auth.currentUser;
 
     await db
-      .collection('users')
+      .collection("users")
       .doc(uid)
       .get()
       .then((snapshot) => {

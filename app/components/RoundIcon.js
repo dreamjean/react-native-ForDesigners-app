@@ -1,8 +1,8 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import React from 'react';
-import styled from 'styled-components';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from "react";
+import styled from "styled-components";
 
-import { colors } from '../config';
+import { colors } from "../config";
 
 const RoundIcon = ({
   bgColor,
