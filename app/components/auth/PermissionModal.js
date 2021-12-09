@@ -27,7 +27,7 @@ function PermissionModal({
             onPress={onCameraRollPermission}
           />
           <Button
-            title="Cancle"
+            title="Cancel"
             bgColor={colors.transparent}
             color={colors.blue2}
             onPress={onCloseModal}

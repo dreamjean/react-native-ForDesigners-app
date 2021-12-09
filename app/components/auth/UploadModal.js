@@ -1,16 +1,15 @@
 import LottieView from "lottie-react-native";
+import * as Progress from "react-native-progress";
 import styled from "styled-components";
 
-const UploadModal = ({ visible = false, onDone, uploadState }) => {
+import { colors } from "../../config";
+
+const UploadModal = ({ visible = false, onDone, progress }) => {
   return (
     <Modal {...{ visible }}>
       <Container>
-        {uploadState === "uploading" ? (
-          <LottieView
-            autoPlay
-            loop
-            source={require("../../assets/animations/lottie-fluid-loading.json")}
-          />
+        {progress < 100 ? (
+          <Progress.Bar progress={progress} width={200} color={colors.blue} />
         ) : (
           <LottieView
             autoPlay

@@ -1,14 +1,16 @@
+import "react-native-gesture-handler";
+
 import { ApolloProvider } from "@apollo/client";
 import { NavigationContainer } from "@react-navigation/native";
 import { decode, encode } from "base-64";
 import AppLoading from "expo-app-loading";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LogBox, Platform } from "react-native";
 
+import authApi from "./app/api/auth";
 import { client as ApolloClient } from "./app/api/client";
 import AuthContext from "./app/auth/context";
 import { Theme } from "./app/components";
-import { auth } from "./app/firebase";
 import useLoadAssets from "./app/hooks/useLoadAssets";
 import { AppNavigator, AuthNavigator, navigationTheme } from "./app/navigation";
 
@@ -19,24 +21,30 @@ if (!global.atob) global.atob = decode;
 if (Platform.OS === "android")
   LogBox.ignoreLogs(["Setting a timer for a long period of time"]);
 
+// 消除AsyncStorage的黄色警告
+LogBox.ignoreLogs([
+  "AsyncStorage has been extracted from react-native core and will be removed in a future release.",
+]);
+
 export default function App() {
   const { assetsLoaded, setAssetsLoaded, loadAssetsAsync } = useLoadAssets();
+  const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
 
-  useEffect(() => {
-    const subscriber = auth.onAuthStateChanged(onAuthStateChanged);
-    return subscriber;
-  }, []);
+  authApi.checkUser((userData) => {
+    if (userData) setUser({ id: userData.uid, ...user });
 
-  const onAuthStateChanged = (user) => {
-    if (user) setUser(user);
-  };
+    if (initializing) setInitializing(false);
+  });
 
-  if (!assetsLoaded)
+  if (!assetsLoaded || initializing)
     return (
       <AppLoading
         startAsync={loadAssetsAsync}
-        onFinish={() => setAssetsLoaded(true)}
+        onFinish={() => {
+          setAssetsLoaded(true);
+          setInitializing(false);
+        }}
         onError={console.warn}
       />
     );

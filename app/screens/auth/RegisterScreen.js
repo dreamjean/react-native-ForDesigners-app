@@ -3,6 +3,9 @@ import { Keyboard } from "react-native";
 import styled from "styled-components";
 import * as Yup from "yup";
 
+import authApi from "../../api/auth";
+import storageApi from "../../api/storage";
+import useAuth from "../../auth/useAuth";
 import { Container, TextLinking, UploadModal } from "../../components";
 import {
   ErrorMessage,
@@ -12,7 +15,6 @@ import {
   SubmitButton,
 } from "../../components/form";
 import Text from "../../components/styles/Text";
-import { auth, db, storage } from "../../firebase";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().max(50).label("Name"),
@@ -30,75 +32,45 @@ const validationSchema = Yup.object().shape({
 const RegisterScreen = ({ navigation }) => {
   const [error, setError] = useState();
   const [uploadVisible, setUploadVisible] = useState(false);
-  const [uploadState, setUploadState] = useState("uploading");
+  const [progress, setProgress] = useState(0);
   const [inputs] = useState([]);
+  const { setUser } = useAuth();
 
   const focusNextField = (nextField) => inputs[nextField].focus();
 
-  const uploadImage = async (uid, name, email, image) => {
-    try {
-      const childPath = `users/${uid}/${Date.now()}`;
-      const response = await fetch(image);
-      const blob = await response.blob();
-
-      const task = storage.ref().child(childPath).put(blob);
-
-      const taskProgress = (snapshot) => {
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        if (progress === 100) setUploadState("done");
-      };
-
-      const taskError = (error) => {
-        console.log(error);
-      };
-
-      const taskCompleted = () => {
-        task.snapshot.ref.getDownloadURL().then((url) => {
-          db.collection("users").doc(uid).set({
-            uid,
-            photo: url,
-            name,
-            email,
-          });
-        });
-      };
-
-      task.on("state_changed", taskProgress, taskError, taskCompleted);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleSubmit = async (userInfo) => {
     Keyboard.dismiss();
+    setProgress(0);
     setUploadVisible(true);
 
     const { name, email, password, photo } = userInfo;
 
     try {
-      await auth
-        .createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          const { uid } = userCredential.user;
+      const {
+        user: { uid },
+      } = await authApi.register(email, password);
 
-          uploadImage(uid, name, email, photo);
-
-          setUploadVisible(false);
-        });
+      await storageApi.uploadImage(
+        uid,
+        name,
+        email,
+        photo,
+        setProgress,
+        setError
+      );
+      setUser({ id: uid, name, email });
     } catch (error) {
       setError(error.message);
-      setUploadVisible(false);
       console.log("@Error Register: ", error.message);
     }
+    setUploadVisible(false);
   };
 
   return (
     <Container>
       <UploadModal
         visible={uploadVisible}
-        uploadState={uploadState}
+        progress={progress}
         onDone={() => setUploadVisible(false)}
       />
       <Title title1>Create your account.</Title>

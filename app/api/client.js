@@ -7,6 +7,6 @@ export const client = new ApolloClient({
   uri: `https://graphql.contentful.com/content/v1/spaces/${keys.CONTENTFUL_SPACE_ID}`,
   credentials: "same-origin",
   headers: {
-    authorization: `Bearer ${keys.CDA_TOKEN}`,
+    Authorization: `Bearer ${keys.CDA_TOKEN}`,
   },
 });

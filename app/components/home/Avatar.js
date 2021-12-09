@@ -1,7 +1,7 @@
 import { Pressable } from "react-native";
 import styled from "styled-components";
 
-import Notifications from "../../assets/icons/icon-notifications.svg";
+import Notifications from "../../assets/svgIcons/icon-notifications.svg";
 import { images } from "../../config";
 import Image from "../styles/Image";
 import Text from "../styles/Text";

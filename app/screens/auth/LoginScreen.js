@@ -3,6 +3,8 @@ import { Keyboard } from "react-native";
 import styled from "styled-components";
 import * as Yup from "yup";
 
+import authApi from "../../api/auth";
+import useAuth from "../../auth/useAuth";
 import { ActivityIndicator, Container, TextLinking } from "../../components";
 import {
   ErrorMessage,
@@ -13,7 +15,6 @@ import {
 import Image from "../../components/styles/Image";
 import Text from "../../components/styles/Text";
 import { images } from "../../config";
-import { auth, firebase } from "../../firebase";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -32,17 +33,18 @@ const LoginScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [inputs] = useState([]);
+  const auth = useAuth();
 
   const focusNextField = (nextField) => inputs[nextField].focus();
 
   const focusEmail = () => {
-    setIconEmail(require("../../assets/icon-email-animated.gif"));
-    setIconPassword(images[31]);
+    setIconEmail(require("../../assets/images/icon-email-animated.gif"));
+    setIconPassword(images.password);
   };
 
   const focusPassword = () => {
-    setIconEmail(images[30]);
-    setIconPassword(require("../../assets/icon-password-animated.gif"));
+    setIconEmail(images.email);
+    setIconPassword(require("../../assets/images/icon-password-animated.gif"));
   };
 
   const handleSubmit = async ({ email, password }) => {
@@ -50,23 +52,21 @@ const LoginScreen = ({ navigation }) => {
     setLoading(true);
 
     try {
-      // 设置用户持久登录
-      await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+      const { idToken } = await authApi.login(email, password);
 
-      await auth
-        .signInWithEmailAndPassword(email, password)
-        .then(() => setLoading(false));
+      auth.setUser(idToken);
     } catch (error) {
       setError(error.message);
     }
+    setLoading(false);
   };
 
   if (loading) return <ActivityIndicator visible={loading} />;
 
   return (
     <Container>
-      <Image logo2 source={images[28]} />
-      <Title caption1>Start learning Sccess pro content.</Title>
+      <Image logo3 source={images.logoDc} />
+      <Title caption1>Start learning Success pro content.</Title>
       <Wrapper>
         <Form
           initialValues={{ email: "", password: "" }}
@@ -123,7 +123,7 @@ const LoginScreen = ({ navigation }) => {
 };
 
 const Title = styled(Text)`
-  width: 180px;
+  width: 210px;
   text-align: center;
   text-transform: uppercase;
 

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import authApi from "../api/auth";
 import useAuth from "../auth/useAuth";
 import { Content, IconButton, SettingsItem } from "../components";
 import Text from "../components/styles/Text";
@@ -10,10 +11,17 @@ const { width } = constants;
 let cardWidth = width > 500 ? 500 : width;
 
 const SettingsScreen = ({ navigation }) => {
-  const { user, logout } = useAuth();
+  const { user, logOut } = useAuth();
 
-  const handlePress = (title) => {
-    if (title === "Log out") return logout();
+  const handlePress = async (title) => {
+    if (title !== "Log out") return navigation.navigate(title);
+
+    try {
+      await authApi.logout();
+      logOut();
+    } catch ({ message }) {
+      console.log("@Error Logout: ", message);
+    }
   };
 
   return (

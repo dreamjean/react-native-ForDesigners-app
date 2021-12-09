@@ -1,5 +1,6 @@
 import { useIsFocused } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
+import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
@@ -27,7 +28,7 @@ const Container = ({ children }) => {
       translateY.value = withTiming(0);
     } else {
       scale.value = withDelay(500, withSpring(0.5));
-      translateY.value = withTiming(height, { duration: 500 });
+      translateY.value = withTiming(height, { duration: 600 });
     }
   }, [isFocused]);
 
@@ -56,6 +57,7 @@ const Container = ({ children }) => {
           <AnimatedBox style={style}>{children}</AnimatedBox>
         </KeyboardAwareScrollView>
       </Cover>
+      <StatusBar style="light" />
     </ImageBackground>
   );
 };
