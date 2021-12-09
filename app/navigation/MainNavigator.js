@@ -6,6 +6,7 @@ import { CoursesScreen, HomeScreen, ProjectScreen } from "../screens";
 const Tab = createBottomTabNavigator();
 
 const screenOptions = ({ route }) => ({
+  headerShown: false,
   tabBarIcon: ({ size, color }) => {
     let icon;
     if (route.name === "Home") icon = "home";

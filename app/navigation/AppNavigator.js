@@ -15,14 +15,12 @@ const Stack = createStackNavigator();
 
 const AppNavigator = () => (
   <Stack.Navigator
-    mode="modal"
     screenOptions={({ route, navigation }) => ({
-      headerShown: false,
       cardOverlayEnabled: true,
+      presentation: "modal",
+      headerShown: false,
       headerStatusBarHeight:
-        navigation
-          .dangerouslyGetState()
-          .routes.findIndex((r) => r.key === route.key) > 0
+        navigation.getState().routes.findIndex((r) => r.key === route.key) > 0
           ? 0
           : undefined,
     })}
