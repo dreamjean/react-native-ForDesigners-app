@@ -16,7 +16,7 @@ import IconButton from "../IconButton";
 
 const { width, height, PROJECT_CARD_WIDTH, PROJECT_CARD_HEIGHT } = constants;
 
-const ProjectCard = ({ image, title, author, text, setCardOpened }) => {
+const ProjectCard = ({ image, title, author, text, setCardOpened, style }) => {
   const tabBarHeight = useBottomTabBarHeight();
   const cardWidth = useSharedValue(PROJECT_CARD_WIDTH);
   const cardHeight = useSharedValue(PROJECT_CARD_HEIGHT);
@@ -86,36 +86,52 @@ const ProjectCard = ({ image, title, author, text, setCardOpened }) => {
   });
 
   return (
-    <Pressable onPress={openCard} onLongPress={() => setCardOpened(false)}>
-      <AnimatedContainer style={stylec}>
-        <Cover>
-          <Image source={image} />
-          <AnimatedTitle title1 white style={stylet}>
-            {title}
-          </AnimatedTitle>
-          <Auth caption2 bold upper white opacity={0.7}>
-            {author}
-          </Auth>
-        </Cover>
-        <AnimatedText caption2 dark style={stylet2}>
-          {text}
-        </AnimatedText>
-        <AnimatedLinearGradient
-          colors={[colors.transparent, colors.white]}
-          style={styleg}
-        />
-        <Animated.View
-          style={[{ position: "absolute", top: 20, right: 20 }, stylei]}
-        >
-          <IconButton
-            iconName="close"
-            bgColor={colors.white}
-            size={32}
-            onPress={closeCard}
+    <Animated.View
+      style={[
+        {
+          shadowColor: colors.black,
+          shadowOpacity: 0.15,
+          shadowOffset: {
+            width: 10,
+            height: 15,
+          },
+          shadowRadius: 8,
+          elevation: 15,
+        },
+        style,
+      ]}
+    >
+      <Pressable onPress={openCard} onLongPress={() => setCardOpened(false)}>
+        <AnimatedContainer style={stylec}>
+          <Cover>
+            <Image source={image} />
+            <AnimatedTitle title1 white style={stylet}>
+              {title}
+            </AnimatedTitle>
+            <Auth caption2 bold upper white opacity={0.7}>
+              {author}
+            </Auth>
+          </Cover>
+          <AnimatedText caption2 dark style={stylet2}>
+            {text}
+          </AnimatedText>
+          <AnimatedLinearGradient
+            colors={[colors.transparent, colors.white]}
+            style={styleg}
           />
-        </Animated.View>
-      </AnimatedContainer>
-    </Pressable>
+          <Animated.View
+            style={[{ position: "absolute", top: 20, right: 20 }, stylei]}
+          >
+            <IconButton
+              iconName="close"
+              bgColor={colors.white}
+              size={32}
+              onPress={closeCard}
+            />
+          </Animated.View>
+        </AnimatedContainer>
+      </Pressable>
+    </Animated.View>
   );
 };
 

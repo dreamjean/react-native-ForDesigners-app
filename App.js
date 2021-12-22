@@ -4,11 +4,12 @@ import { ApolloProvider } from "@apollo/client";
 import { NavigationContainer } from "@react-navigation/native";
 import { decode, encode } from "base-64";
 import AppLoading from "expo-app-loading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LogBox, Platform } from "react-native";
 
 import authApi from "./app/api/auth";
 import { client as ApolloClient } from "./app/api/client";
+import usersApi from "./app/api/users";
 import AuthContext from "./app/auth/context";
 import { Theme } from "./app/components";
 import useLoadAssets from "./app/hooks/useLoadAssets";
@@ -28,23 +29,34 @@ LogBox.ignoreLogs([
 
 export default function App() {
   const { assetsLoaded, setAssetsLoaded, loadAssetsAsync } = useLoadAssets();
-  const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
 
-  authApi.checkUser((userData) => {
-    if (userData) setUser({ id: userData.uid, ...user });
+  useEffect(() => {
+    fetchUser();
+  }, [user]);
 
-    if (initializing) setInitializing(false);
-  });
+  const fetchUser = () => {
+    authApi.checkUser(async (user) => {
+      if (user) {
+        try {
+          const docSnap = await usersApi.getUser(user.uid);
+          if (docSnap.exists()) setUser(docSnap.data());
+          else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
+  };
 
-  if (!assetsLoaded || initializing)
+  if (!assetsLoaded)
     return (
       <AppLoading
         startAsync={loadAssetsAsync}
-        onFinish={() => {
-          setAssetsLoaded(true);
-          setInitializing(false);
-        }}
+        onFinish={() => setAssetsLoaded(true)}
         onError={console.warn}
       />
     );

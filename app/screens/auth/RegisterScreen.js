@@ -15,6 +15,7 @@ import {
   SubmitButton,
 } from "../../components/form";
 import Text from "../../components/styles/Text";
+import useFocusInput from "../../hooks/useFocusInput";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().max(50).label("Name"),
@@ -33,10 +34,8 @@ const RegisterScreen = ({ navigation }) => {
   const [error, setError] = useState();
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [inputs] = useState([]);
   const { setUser } = useAuth();
-
-  const focusNextField = (nextField) => inputs[nextField].focus();
+  const { onRef, focusNextField } = useFocusInput();
 
   const handleSubmit = async (userInfo) => {
     Keyboard.dismiss();
@@ -58,7 +57,8 @@ const RegisterScreen = ({ navigation }) => {
         setProgress,
         setError
       );
-      setUser({ id: uid, name, email });
+
+      setUser({ id: uid });
     } catch (error) {
       setError(error.message);
       console.log("@Error Register: ", error.message);
@@ -114,7 +114,7 @@ const RegisterScreen = ({ navigation }) => {
             keyboardType="email-address"
             name="email"
             onSubmitEditing={() => focusNextField("password")}
-            onRef={(input) => (inputs["email"] = input)}
+            onRef={onRef("email")}
             placeholder="Email"
             returnKeyLabel="next"
             returnKeyType="next"
@@ -131,7 +131,7 @@ const RegisterScreen = ({ navigation }) => {
             keyboardType="default"
             maxLength={50}
             name="password"
-            onRef={(input) => (inputs["password"] = input)}
+            onRef={onRef("password")}
             placeholder="Password"
             returnKeyLabel="go"
             returnKeyType="go"

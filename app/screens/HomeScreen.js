@@ -1,9 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
 import styled from "styled-components";
 
-import usersApi from "../api/users";
 import useAuth from "../auth/useAuth";
 import {
   ActivityIndicator,
@@ -17,26 +15,9 @@ import { logos } from "../data";
 import GET_CARDS_ITEMS from "../query/sectionCards";
 
 const HomeScreen = ({ navigation }) => {
-  const { user, setUser } = useAuth();
+  const { user } = useAuth();
   const { loading, error, data } = useQuery(GET_CARDS_ITEMS);
   const sectionCards = data?.cardsCollection?.items;
-
-  useEffect(() => {
-    fetchUser();
-  }, [user]);
-
-  const fetchUser = async () => {
-    try {
-      const docSnap = await usersApi.getUser(user.id);
-      if (docSnap.exists()) setUser(docSnap.data());
-      else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   if (loading) return <ActivityIndicator visible={loading} />;
   if (error)

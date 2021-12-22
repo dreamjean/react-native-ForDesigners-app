@@ -114,14 +114,13 @@ const ProjectScreen = () => {
           },
           runOnJS(resetNextCard)()
         );
-        scale.value = withTiming(0, { duration: 300 });
         imgOpacity.value = withTiming(0, { duration: 300 });
       }
       imgOpacity.value = withTiming(1, timingConfig);
     },
   });
 
-  const stylem = useAnimatedStyle(() => {
+  const outerStyle = useAnimatedStyle(() => {
     return {
       opacity: opacity.value,
     };
@@ -161,39 +160,42 @@ const ProjectScreen = () => {
     };
   });
 
+  const cardStyles = [card1Style, card2Style, card3Style];
+
+  const { title, image, author, text } = projects[index];
+  const {
+    title: nextTitle,
+    image: nextImage,
+    author: nextAuthor,
+    text: nextText,
+  } = projects[getNextIndex(index)];
+
   return (
     <Container>
-      <Animated.View style={[styles.mask, stylem]} />
+      <Animated.View style={[styles.mask, outerStyle]} />
       <PanGestureHandler
         enabled={!cardOpened}
         onGestureEvent={handlePanGesture}
       >
         <Animated.View style={styles.wrapper}>
-          <Animated.View style={[styles.shadow, card1Style]}>
-            <ProjectCard
-              title={projects[index].title}
-              image={projects[index].image}
-              author={projects[index].author}
-              text={projects[index].text}
-              {...{ cardOpened, setCardOpened }}
-            />
-          </Animated.View>
-          <Animated.View style={[styles.shadow, card2Style]}>
-            <ProjectCard
-              title={projects[getNextIndex(index)].title}
-              image={projects[getNextIndex(index)].image}
-              author={projects[getNextIndex(index)].author}
-              text={projects[getNextIndex(index)].text}
-            />
-          </Animated.View>
-          <Animated.View style={[styles.shadow, card3Style]}>
-            <ProjectCard
-              title={projects[getNextIndex(index + 1)].title}
-              image={projects[getNextIndex(index + 1)].image}
-              author={projects[getNextIndex(index + 1)].author}
-              text={projects[getNextIndex(index + 1)].text}
-            />
-          </Animated.View>
+          {Array.from({ length: 3 })
+            .fill(0)
+            .map((_, i) => {
+              const first = i === 0;
+
+              return (
+                <ProjectCard
+                  key={`project${i}`}
+                  title={first ? title : nextTitle}
+                  image={first ? image : nextImage}
+                  author={first ? author : nextAuthor}
+                  text={first ? text : nextText}
+                  style={cardStyles[i]}
+                  cardOpened={first && cardOpened}
+                  setCardOpened={first && setCardOpened}
+                />
+              );
+            })}
         </Animated.View>
       </PanGestureHandler>
       <StatusBar barStyle="dark-content" />
@@ -212,16 +214,6 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFill,
     alignItems: "center",
     justifyContent: "center",
-  },
-  shadow: {
-    shadowColor: colors.black,
-    shadowOpacity: 0.15,
-    shadowOffset: {
-      width: 10,
-      height: 15,
-    },
-    shadowRadius: 8,
-    elevation: 15,
   },
   mask: {
     ...StyleSheet.absoluteFillObject,

@@ -15,6 +15,7 @@ import {
 import Image from "../../components/styles/Image";
 import Text from "../../components/styles/Text";
 import { images } from "../../config";
+import useFocusInput from "../../hooks/useFocusInput";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -32,10 +33,8 @@ const LoginScreen = ({ navigation }) => {
   const [iconPassword, setIconPassword] = useState(images.password);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
-  const [inputs] = useState([]);
   const auth = useAuth();
-
-  const focusNextField = (nextField) => inputs[nextField].focus();
+  const { onRef, focusNextField } = useFocusInput();
 
   const focusEmail = () => {
     setIconEmail(require("../../assets/images/icon-email-animated.gif"));
@@ -52,9 +51,11 @@ const LoginScreen = ({ navigation }) => {
     setLoading(true);
 
     try {
-      const { idToken } = await authApi.login(email, password);
+      const {
+        user: { uid },
+      } = await authApi.login(email, password);
 
-      auth.setUser(idToken);
+      auth.setUser({ id: uid });
     } catch (error) {
       setError(error.message);
     }
@@ -103,7 +104,7 @@ const LoginScreen = ({ navigation }) => {
             maxLength={50}
             name="password"
             onFocus={focusPassword}
-            onRef={(input) => (inputs["password"] = input)}
+            onRef={onRef("password")}
             placeholder="Password"
             returnKeyLabel="go"
             returnKeyType="go"
